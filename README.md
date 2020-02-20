@@ -1,4 +1,4 @@
-#Lease at Block put Rent-stabilized lease into a secured, immutable and traceable blockchain. 
+# Lease at Block put Rent-stabilized lease into a secured, immutable and traceable blockchain. 
 
 The Gitcoin Virtual Hackathon Decentralized Impact Incubator is an on-line hackathon sponsored by Blockchain for Social Impact. 
 From February 18th till March 31st team will develop a product to resolve one of the United Nation Sustainable Development Goals. 
@@ -10,7 +10,8 @@ https://sustainabledevelopment.un.org/sdg11
 
 ## Project Name: Lease At Block 
 
-### Medium term goal : Present this project to the NYCEDC and the think tank New America to get funding. Building a simple solution that can be easily implemented to any city in the world.
+### Medium term goal : 
+Present this project to the NYCEDC and the think tank New America to get funding. Building a simple solution that can be easily implemented to any city in the world.
  
 ### The context:
 -About 1 million apartments are rent-stabilized in NYC, that's roughly half of all apartments in the city. 
