@@ -1,5 +1,5 @@
-
-# Lease at Block put Rent-stabilized lease into a secured, immutable and traceable blockchain. 
+# Lease At Block 
+Lease at Block put Rent-stabilized lease into a secured, immutable and traceable blockchain. 
 
 [The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](blockchainforsocialimpact.com/). 
 From February 18th till March 31st team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
@@ -13,8 +13,6 @@ From February 18th till March 31st team will develop a product to resolve the Un
  -  [BSIC Decentralized Incubator Presentation slides ](https://docs.google.com/presentation/d/1R_sQtz0454G4nNclYzuyi_MrEfSZgaBUaSlPP4usseI/edit#slide=id.g6f17f92e59_0_4) 
  - DII BSIC Gitcoin offcial Chat : https://chat.gitcoin.co/hackathons/channels/dii-general
  - To understand the problem we are tackling: [Rent Regulation in NYC: How it works, what went wrong, and how to fix it](https://www.cssny.org/publications/entry/rent-regulation-in-new-york-city)
-
-## Project Name: Lease At Block 
 
 
 ### After the Hackathon : 
