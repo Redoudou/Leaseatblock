@@ -16,7 +16,7 @@ From February 18th till March 31st team will develop a product to resolve the Un
 
 
 ### After the Hackathon : 
-Present this project to the [NYCEDC](https://edc.nyc/) and the think tank [New America](https://www.newamerica.org/) to get funding. 
+Present this project to the [NYCEDC](https://edc.nyc/) and the think tank [New America](https://www.newamerica.org/) to have support of policy makers and lobbysts to deploy the solution to New York City and the 36 other american cities with rent regulations.
  
 ### The context:
 A product of nearly 100 years of advocacy and legislation, rent regulation is critical for low-income New Yorkers.
