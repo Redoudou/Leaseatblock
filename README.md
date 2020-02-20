@@ -1,7 +1,7 @@
 # Lease At Block 
 ### Lease at Block manage Rent-stabilized lease into a secured, immutable and traceable blockchain. 
 
-[The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](blockchainforsocialimpact.com/). 
+[The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](https://blockchainforsocialimpact.com/). 
 From February 18th till March 31st team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
 
  - [Make cities and human settlements inclusive, safe, resilient and sustainable](https://sustainabledevelopment.un.org/sdg11)
