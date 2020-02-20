@@ -1,1 +1,36 @@
-<span class="c1">The Gitcoin Virtual Hackathon Decentralized Impact Incubator is an on-line hackathon sponsored by Blockchain for Social Impact. </span></p><p class="c3"><span class="c1">From February 18th till March 31st team will develop a product to resolve one of the United Nation Sustainable Development Goals. </span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span class="c1">Make cities and human settlements inclusive, safe, resilient and sustainable</span></p><p class="c3"><span class="c6"><a class="c5" href="https://www.google.com/url?q=https://sustainabledevelopment.un.org/sdg11&amp;sa=D&amp;ust=1582198276987000">https://sustainabledevelopment.un.org/sdg11</a></span><span class="c1"><br><br>10 000$ prize !<br></span></p><p class="c3"><span class="c7">Project Name</span><span class="c1">: Lease At Block </span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span class="c7">NEED</span><span class="c1">: front end, back end Ethereum/hyper-ledger / Besu &nbsp;blockchain developer, designer, product manager to help build Lease at Block.</span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span class="c7">Medium term goal</span><span class="c1">&nbsp;: Present this project to the NYCEDC and the think tank New America to get funding. Building a simple solution that can be easily implemented to any city in the world.</span></p><p class="c3"><span>&nbsp;<br></span><span class="c7">The context:</span></p><p class="c3"><span>About 1 million apartments are rent-stabilized in NYC, that's roughly half of all apartments in the city. Rent Stabilization giver renters the right to stay in their apartment with modest rent increases each year, typically between 2 - 6%.<br><br></span><span class="c7">The Problem we will tackle</span><span>:</span></p><p class="c3"><span class="c1">Since 1990, we estimate New York City has lost 300 000 rent-stabilized apartments. A lot of tenants do not know they are in a rent-controlled apartment and thus are being abused by realtors. &nbsp;The city lacks a system that tracks rent-stabilized. It’s almost impossible to know if an apartment is under that regulation or not. </span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span class="c7">Solution</span></p><p class="c3"><span class="c1">We need a database</span></p><p class="c3"><span class="c1">There is multiple writers</span></p><p class="c3"><span class="c1">Landlords ,Tenants and City have conflicting interests.<br>We can’t rely on a third party.</span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span class="c1">⇒ we have a Blockchain use case ! Lease at Block put Rent-stabilized lease into a secured, immutable and traceable blockchain. </span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span class="c4">Links to go further:</span></p><p class="c3"><span class="c6"><a class="c5" href="https://www.google.com/url?q=http://www.nyc.gov/html/housing/assets/downloads/pdf/housing_plan.pdf&amp;sa=D&amp;ust=1582198276989000">http://www.nyc.gov/html/housing/assets/downloads/pdf/housing_plan.pdf</a></span></p><p class="c3"><span class="c6"><a class="c5" href="https://www.google.com/url?q=https://amirentstabilized.com/info/why.html&amp;sa=D&amp;ust=1582198276990000">https://amirentstabilized.com/info/why.html</a></span></p><p class="c3"><span class="c6"><a class="c5" href="https://www.google.com/url?q=https://a806-housingconnect.nyc.gov/nyclottery/lottery.html%23home&amp;sa=D&amp;ust=1582198276990000">https://a806-housingconnect.nyc.gov/nyclottery/lottery.html#home</a></span></p><p class="c3"><span class="c6"><a class="c5" href="https://www.google.com/url?q=https://rentguidelinesboard.cityofnewyork.us/resources/rent-stabilized-building-lists/&amp;sa=D&amp;ust=1582198276990000">https://rentguidelinesboard.cityofnewyork.us/resources/rent-stabilized-building-lists/</a></span></p><p class="c0"><span class="c1"></span></p><p class="c0"><span class="c1"></span></p><p class="c3"><span>Every city in the world has programs to preserve rent increase, this solution could be global ! </span>
+#Lease at Block put Rent-stabilized lease into a secured, immutable and traceable blockchain. 
+
+The Gitcoin Virtual Hackathon Decentralized Impact Incubator is an on-line hackathon sponsored by Blockchain for Social Impact. 
+From February 18th till March 31st team will develop a product to resolve one of the United Nation Sustainable Development Goals. 
+
+Make cities and human settlements inclusive, safe, resilient and sustainable
+https://sustainabledevelopment.un.org/sdg11
+
+
+
+## Project Name: Lease At Block 
+
+### Medium term goal : Present this project to the NYCEDC and the think tank New America to get funding. Building a simple solution that can be easily implemented to any city in the world.
+ 
+### The context:
+-About 1 million apartments are rent-stabilized in NYC, that's roughly half of all apartments in the city. 
+-Rent Stabilization giver renters the right to stay in their apartment with modest rent increases each year, typically between 2 - 6%.
+
+### The Problem we will tackle:
+Since 1990, we estimate New York City has lost 300 000 rent-stabilized apartments. A lot of tenants do not know they are in a rent-controlled apartment and thus are being abused by realtors.  The city lacks a system that tracks rent-stabilized. It’s almost impossible to know if an apartment is under that regulation or not. 
+
+### Do we need a Blockchain ?
+
+We need a database
+There is multiple writers
+Landlords ,Tenants and City have conflicting interests.
+We can’t rely on a third party.
+
+⇒ we have a Blockchain use case ! 
+
+### Links to go further:
+http://www.nyc.gov/html/housing/assets/downloads/pdf/housing_plan.pdf
+https://amirentstabilized.com/info/why.html
+https://a806-housingconnect.nyc.gov/nyclottery/lottery.html#home
+https://rentguidelinesboard.cityofnewyork.us/resources/rent-stabilized-building-lists/
+
