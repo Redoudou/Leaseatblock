@@ -6,7 +6,7 @@ From February 18th till March 31st team will develop a product to resolve the Un
 
  - [Make cities and human settlements inclusive, safe, resilient and sustainable](https://sustainabledevelopment.un.org/sdg11)
  
- We will be building a simple solution that can be easily implemented to any city in the world.
+ We will be building a solution that apply to New York regulation rent laws but we are looking to expand this inovation to any city.
 
 #### Important links
  - Project Slack space : leaseatblock.slack.com
