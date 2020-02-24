@@ -7,7 +7,8 @@ From February 18th till March 31st team will develop a product to resolve the Un
 
  - [Make cities and human settlements inclusive, safe, resilient and sustainable](https://sustainabledevelopment.un.org/sdg11)
  - [Link the bounty page and judge requirements](https://gitcoin.co/issue/blockchainforsocialimpact/incubator/2/4017) 
- We will be building a solution that apply to New York regulation rent laws but we are looking to expand this inovation to any city.
+
+We will be building a solution that apply to New York regulation rent laws but we are looking to expand this inovation to any city.
 
 #### Important links
  - Project Slack space : leaseatblock.slack.com
