@@ -15,8 +15,8 @@ We will be building a solution that apply to New York regulation rent laws but w
  -  [BSIC Decentralized Incubator Presentation slides ](https://docs.google.com/presentation/d/1R_sQtz0454G4nNclYzuyi_MrEfSZgaBUaSlPP4usseI/edit#slide=id.g6f17f92e59_0_4) 
  - DII BSIC Gitcoin offcial Chat : https://chat.gitcoin.co/hackathons/channels/dii-general
  - To understand the problem we are tackling: 
-  [FAQ Rent Regulation](https://hcr.ny.gov/search/rental_housing_documents_by_type?f%5B0%5D=filter_term:1161)
-  [Rent Regulation in NYC: How it works, what went wrong, and how to fix it](https://www.cssny.org/publications/entry/rent-regulation-in-new-york-city)
+ - [FAQ Rent Regulation](https://hcr.ny.gov/search/rental_housing_documents_by_type?f%5B0%5D=filter_term:1161)
+ - [Rent Regulation in NYC: How it works, what went wrong, and how to fix it](https://www.cssny.org/publications/entry/rent-regulation-in-new-york-city)
  
 
 
