@@ -1,6 +1,6 @@
 
 # Lease At Block 
-### Lease at Block manages, stores and transfers Rent-stabilized lease into a secured, immutable and traceable blockchain. 
+### Lease at Block manages, stores and transfers Rent-stabilized lease into a secured, immutable and traceable blockchain.Ultimately we want to link a rent-sabilized lease with the affordable housing tax incentives that the developer benefited. (LIHTC, j51, 421a....)
 
 [The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](https://blockchainforsocialimpact.com/). 
 From February 18th till March 31st team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
