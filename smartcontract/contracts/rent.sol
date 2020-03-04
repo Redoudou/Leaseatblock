@@ -28,7 +28,7 @@ contract RentalAgreement {
         createdTimestamp = block.timestamp;
     }
 
-    modifier require(bool _condition) {
+    modifier required(bool _condition) {
         if (!_condition) revert("");
         _;
     }
@@ -88,14 +88,14 @@ contract RentalAgreement {
     event contractTerminated();
 
     /* Confirm the lease agreement as tenant*/
-    function confirmAgreement() public inState(State.Created) require(msg.sender != landlord)
+    function confirmAgreement() public inState(State.Created) required(msg.sender != landlord)
     {
         emit agreementConfirmed();
         tenant = msg.sender;
         state = State.Started;
     }
 
-    function payRent() public payable onlyTenant inState(State.Started) require(msg.value == rent)
+    function payRent() public payable onlyTenant inState(State.Started) required(msg.value == rent)
     {
         emit paidRent();
         landlord.transfer(msg.value);
