@@ -83,6 +83,7 @@ contract Rent is Owned {
 	House[] public allHouses;
 	OtherDetails[] public allOtherDetails;
 	Checks[] public allChecks;
+    Person[] public allPersons;
 
 	mapping(address => Person) public addressToPerson;
 	mapping(address => bool) private checkUser;
@@ -90,17 +91,17 @@ contract Rent is Owned {
 
 	constructor() public {
 		checkUser[owner] = true;
-		var govt = Person(owner, 'Owner', 'Owner', 0, 'None',  new uint[](0), new uint[](0));
+		// var govt = Person(owner, 'Owner', 'Owner', 0, 'None',  new uint[](0), new uint[](0));
 
-		addressToPerson[owner] = govt;
+		addressToPerson[owner] = Person(owner, 'Owner', 'Owner', 0, 'None',  new uint[](0), new uint[](0));
 	}
 
 
 	function getDetails() external view returns(uint _aadhaar, uint[] memory _owned, uint[] memory _rented) {
 	    if(checkUser[msg.sender] == true)
 	    {
-	        var currentUser = addressToPerson[msg.sender];
-	        return(currentUser.aadhaar, currentUser.myOwned, currentUser.myRented);
+	        // var currentUser = addressToPerson[msg.sender];
+	        return(addressToPerson[msg.sender].aadhaar, addressToPerson[msg.sender].myOwned, addressToPerson[msg.sender].myRented);
 	    }
 	}
 
@@ -113,8 +114,8 @@ contract Rent is Owned {
 
 		else if((checkUser[msg.sender] != true)&&(checkAadhaar[_aadhaar] != true))
 		{
-			var newUser = Person(msg.sender, _name, _email, _aadhaar, _sign, new uint[](0), new uint[](0));
-			addressToPerson[msg.sender] = newUser;
+			// var newUser = Person(msg.sender, _name, _email, _aadhaar, _sign, new uint[](0), new uint[](0));
+			addressToPerson[msg.sender] = Person(msg.sender, _name, _email, _aadhaar, _sign, new uint[](0), new uint[](0));
 
 			checkUser[msg.sender] = true;
 			checkAadhaar[_aadhaar] = true;
@@ -132,23 +133,23 @@ contract Rent is Owned {
 		{
 			if(checkUser[_tenant] == true)
 			{
-				var newParty = Parties(msg.sender, _tenant,'N/A', 'N/A', true);
-				var index = allParties.push(newParty) - 1;
+				// var newParty = Parties(msg.sender, _tenant,'N/A', 'N/A', true);
+				// var index = allParties.push(newParty) - 1;
 
-				var newHouse = House('No Address', 'No Property', 0, 0, 0, 0, 0, 0, false);
+				Rent.House memory newHouse = House('No Address', 'No Property', 0, 0, 0, 0, 0, 0, false);
 				allHouses.push(newHouse);
 
-				var newDetails = OtherDetails('28.7041', '77.1025', 'Currently Not Supported', 0, 0, 'N/A', false);
+				Rent.OtherDetails memory newDetails = OtherDetails('28.7041', '77.1025', 'Currently Not Supported', 0, 0, 'N/A', false);
 				allOtherDetails.push(newDetails);
 
-				var newChecks = Checks(false, false, false, false, false, false);
+				Checks memory newChecks = Checks(false, false, false, false, false, false);
 				allChecks.push(newChecks);
 
-				var user = addressToPerson[msg.sender];
-				user.myOwned.push(index);
+				uint[] memory myOwned = new uint[](addressToPerson[msg.sender].myOwned);
+				myOwned.push(allParties.push(Parties(msg.sender, _tenant,'N/A', 'N/A', true)) - 1);
 
 				var tenant = addressToPerson[_tenant];
-				tenant.myRented.push(index);
+				tenant.myRented.push(allParties.push(Parties(msg.sender, _tenant,'N/A', 'N/A', true)) - 1);
 
 				emit registerParty('Tenant Successfully added, Proceed to Step 2');
 			}
@@ -168,7 +169,15 @@ contract Rent is Owned {
 
 	event registerHome(string message, uint FeePayable);
 
-	function newHome(string _add, string _type, uint _startEpoch, uint _endEpoch, uint _months, uint _rent, uint _security) external {
+	function newHome(string calldata _add,
+                    string calldata _type,
+                    uint _startEpoch,
+                    uint _endEpoch,
+                    uint _months,
+                    uint _rent,
+                    uint _security)
+                    external
+    {
 
 		if(checkUser[msg.sender] == true)
 		{
@@ -259,7 +268,7 @@ contract Rent is Owned {
 						else
 						{
 							home.completed = false;
-							emit registerHome('Enter Duration of Contract Correctly.. (Min - 1 month, Max - 240 Months' , 0);
+							emit registerHome('Enter Duration of Contract Correctly.. (Min - 1 month, Max - 240 Months', 0);
 						}
 					}
 
@@ -280,7 +289,7 @@ contract Rent is Owned {
 	}
 
 	event registerDetails(string message);
-	function newDetails(string _lat, string _lon, uint _sqFt, uint _rooms, string _extra) external {
+	function newDetails(string calldata _lat, string calldata _lon, uint _sqFt, uint _rooms, string calldata _extra) external {
 
 		if(checkUser[msg.sender] == true)
 		{
@@ -309,7 +318,7 @@ contract Rent is Owned {
 
 					if(home.completed == false)
 					{
-						registerDetails('Kindly Complete Step 2 before proceeding to Step 3');
+						emit registerDetails('Kindly Complete Step 2 before proceeding to Step 3');
 					}
 
 					else if((details.completed == false)&&(home.completed == true))
@@ -318,16 +327,16 @@ contract Rent is Owned {
 						details.longitude = _lon;
 						details.squareFootage = _sqFt;
 						details.numberBedrooms = _rooms;
-						
+
 						details.others = _extra;
 						details.completed = true;
 
-						registerDetails('Information added successfully, pay the Registration Fee and Sign Contract');
+						emit registerDetails('Information added successfully, pay the Registration Fee and Sign Contract');
 					}
 
 					else
 					{
-						registerDetails('Information already added to the Contract, proceed to Next Steps');
+						emit registerDetails('Information already added to the Contract, proceed to Next Steps');
 					}
 				}
 
@@ -336,29 +345,28 @@ contract Rent is Owned {
 
 		else
 		{
-			registerDetails('Kindly register on Charter, before drafting a Contract');
+			emit registerDetails('Kindly register on Charter, before drafting a Contract');
 		}
 	}
 
 	event feePay(string message);
-	function feePayment(string _sign, uint _currentRate) external payable {
+	function feePayment(string calldata _sign, uint _currentRate) external payable {
 
-		require(msg.value > 0 ether);
-		
+		require(msg.value > 0 ether, "");
+
 		if(checkUser[msg.sender] == true)
 		{
 			var user = addressToPerson[msg.sender];
 
 			uint num = user.myOwned.length - 1;
-			
+
 			if(num < 0)
 			{
-				feePay('Complete all Steps, before paying Registration Fee');
+				emit feePay('Complete all Steps, before paying Registration Fee');
 			}
-			
+
 			else
 			{
-				
 				uint index = user.myOwned[num];
 				var party = allParties[index];
 				var house = allHouses[index];
@@ -371,35 +379,33 @@ contract Rent is Owned {
 					checks.paidRegisterFee = true;
 					party.signLandlord = _sign;
 
-					feePay('Registration Fee Payment Successful');
+					emit feePay('Registration Fee Payment Successful');
 				}
 
-				else 
+				else
 				{
-					feePay('Complete all the Steps given above before Fee Payment');
+					emit feePay('Complete all the Steps given above before Fee Payment');
 				}
 			}
 		}
-		
 		else
 		{
-			feePay('Kindly register on Charter, before drafting..');
+			emit feePay('Kindly register on Charter, before drafting..');
 		}
 	}
 
 
-	function tenantData1() view external returns ( 
-		
-		string landlordName,
+	function tenantData1() external view returns (
+		string memory landlordName,
 		uint landlordAadhaar,
 
-		string addressHouse,
-		string typeProperty,
-		
+		string memory addressHouse,
+		string memory typeProperty,
+
 		uint startEpoch,
 		uint endEpoch,
 		uint rent){
-		
+
 		if(checkUser[msg.sender] == true)
 		{
 			var t = addressToPerson[msg.sender];
@@ -408,25 +414,22 @@ contract Rent is Owned {
 			if(num >= 0)
 			{
 				uint index = t.myRented[num];
-				
+
 				var party = allParties[index];
 				var house = allHouses[index];
 				var details = allOtherDetails[index];
 				var checks = allChecks[index];
-				
+
 				if((party.completed == true)&&(house.completed == true)&&(details.completed == true)&&(checks.paidRegisterFee = true))
 				{
 					address landowner = party.landlord;
 					var land = addressToPerson[landowner];
 
-					return(land.legalName, land.aadhaar, house.addressHouse, house.type_of_property, house.startEpoch, 
-						house.endEpoch, house.rentAmount);
+					return(land.legalName, land.aadhaar, house.addressHouse, house.type_of_property, house.startEpoch, house.endEpoch, house.rentAmount);
 				}
-				
 				else
 				return('No Data', 0, 'No Data', 'No Data', 0, 0, 0);
 			}
-			
 			else
 			return('No Data', 0, 'No Data', 'No Data', 0, 0, 0);
 		}
@@ -434,16 +437,15 @@ contract Rent is Owned {
 		return('No Data', 0, 'No Data', 'No Data', 0, 0, 0);
 	}
 
-	function tenantData2() view external returns ( 
-		
+	function tenantData2() external view returns (
 		uint security,
 		uint registration,
-		string lat,
-		string long,
+		string memory lat,
+		string memory long,
 		uint sqFt,
 		uint rooms,
-		string extra ){
-		
+		string memory extra ){
+
 		if(checkUser[msg.sender] == true)
 		{
 			var t = addressToPerson[msg.sender];
@@ -452,35 +454,31 @@ contract Rent is Owned {
 			if(num >= 0)
 			{
 				uint index = t.myRented[num];
-				
+
 				var party = allParties[index];
 				var house = allHouses[index];
 				var details = allOtherDetails[index];
 				var checks = allChecks[index];
-				
+
 				if((party.completed == true)&&(house.completed == true)&&(details.completed == true)&&(checks.paidRegisterFee = true))
 				{
-					return(house.securityFee, house.registerFee, details.latitude, details.longitude, details.squareFootage, 
-						details.numberBedrooms, details.others);
+					return(house.securityFee, house.registerFee, details.latitude, details.longitude, details.squareFootage, details.numberBedrooms, details.others);
 				}
-				
 				else
 				return(0, 0, '28.7041', '77.1025', 0, 0, 'No Data');
 			}
-			
 			else
 			return(0, 0, '28.7041', '77.1025', 0, 0, 'No Data');
 		}
-		
 		else
 		return(0, 0, '28.7041', '77.1025', 0, 0, 'No Data');
 	}
-	
-	event rejection(string str);
-	function tenantAccept(string _sign, uint _currentRate) external payable {
 
-		require(msg.value > 0 ether);
-		
+	event rejection(string str);
+	function tenantAccept(string calldata _sign, uint _currentRate) external payable {
+
+		require(msg.value > 0 ether, "");
+
 		if(checkUser[msg.sender] == true)
 		{
 			var t = addressToPerson[msg.sender];
@@ -490,36 +488,34 @@ contract Rent is Owned {
 			var house = allHouses[index];
 			var details = allOtherDetails[index];
 			var checks = allChecks[index];
-			
+
 			if((checks.tenantCheck == true)&&(checks.tenantApprove == false))
 			{
-				rejection('Contract is already Rejected, draft New Contract..');
+				emit rejection('Contract is already Rejected, draft New Contract..');
 			}
-			
-			else if((party.completed == true)&&(house.completed == true)&&(details.completed == true)
-				&&(checks.tenantCheck == false)&&(checks.tenantApprove == false))
+
+			else if((party.completed == true)&&(house.completed == true)&&(details.completed == true)&&(checks.tenantCheck == false)&&(checks.tenantApprove == false))
 			{
 				checks.isValid = false;
 				checks.tenantCheck = true;
 				checks.tenantApprove = true;
-				
+
 				party.signTenant = _sign;
 				checks.paidSecurityFee = true;
-				
-				rejection("Tenant Approval of Contract succesful");
+
+				emit rejection("Tenant Approval of Contract succesful");
 			}
-			
+
 			else if((checks.tenantCheck == true)&&(checks.tenantApprove == true))
 			{
-				rejection("Contract already Approved");    
+				emit rejection("Contract already Approved");
 			}
 		}
 
 		else
 		{
-			rejection("You are not registered on Charter..");
+			emit rejection("You are not registered on Charter..");
 		}
-		
 	}
 
 
@@ -536,55 +532,53 @@ contract Rent is Owned {
 			var details = allOtherDetails[index];
 			var checks = allChecks[index];
 
-			if((party.completed == true)&&(house.completed == true)&&(details.completed == true)
-				&&(checks.tenantApprove == false)&&(checks.tenantCheck == false))
+			if((party.completed == true)&&(house.completed == true)&&(details.completed == true)&&(checks.tenantApprove == false)&&(checks.tenantCheck == false))
 			{
 				checks.tenantApprove = false;
 				checks.isValid = false;
 				checks.tenantCheck = true;
-				
+
 				party.completed = false;
 				house.completed = false;
 				details.completed = false;
-				
+
 				var landowner = party.landlord; // return the registration fee back to the landlord after rejection
-				landowner.transfer(house.registerFee  * 10**18/_currentRate);
-				
-				rejection("Contract Rejected, Inform Landlord to draft New Contract..");
+				landowner.transfer(house.registerFee*10**18/_currentRate);
+
+				emit rejection("Contract Rejected, Inform Landlord to draft New Contract..");
 			}
-			
+
 			else if((checks.tenantCheck == true)&&(checks.tenantApprove == true))
 			{
-				rejection("Contract already Approved"); 
+				emit rejection("Contract already Approved");
 			}
-			
+
 			else
 			{
-				rejection("Contract already Rejected, draft a New Contract");    
+				emit rejection("Contract already Rejected, draft a New Contract");
 			}
 		}
 
 		else
 		{
-			rejection("You are not registered on Charter, Register Today..");
+			emit rejection("You are not registered on Charter, Register Today..");
 		}
 	}
-	
 
-	function govLogin() view external onlyOwner returns(string message, uint[] array, uint size) {
+	function govLogin() external view onlyOwner returns(string memory message, uint[] memory array, uint size) {
 		var len = allParties.length;
 		uint[] memory indexes = new uint[](len);
-		
+
 		uint num = 0;
 		bool check = false;
-		
+
 		for(uint i = 0 ; i < allParties.length ; i++)
 		{
 			var party = allParties[i];
 			var home = allHouses[i];
 			var detail = allOtherDetails[i];
 			var checks = allChecks[i];
-			
+
 			if((party.completed == true)&&(home.completed == true)&&(detail.completed == true)&&(checks.paidRegisterFee == true)&&
 				(checks.paidSecurityFee == true)&&(checks.tenantApprove == true)&&(checks.tenantCheck == true)&&(checks.govApprove == false))
 			{
@@ -593,16 +587,16 @@ contract Rent is Owned {
 				check = true;
 			}
 		}
-		
+
 		if(check == true)
 		return('Contract Verifications Pending', indexes, num);
-		
+
 		else
 		return('No Pending Verifications', indexes, 0);
-		
+
 	}
-	
-	
+
+
 	function govApproval(uint i, uint _currentRate) external onlyOwner {
 		if(i < allParties.length)
 		{
@@ -610,13 +604,13 @@ contract Rent is Owned {
 			var home = allHouses[i];
 			var detail = allOtherDetails[i];
 			var checks = allChecks[i];
-			
+
 			if((party.completed == true)&&(home.completed == true)&&(detail.completed == true)&&(checks.paidRegisterFee == true)&&
 				(checks.paidSecurityFee == true)&&(checks.tenantApprove == true)&&(checks.tenantCheck == true))
 			{
 				checks.govApprove = true; // government approves
 				checks.isValid = true; // marked as valid
-				
+
 				owner.transfer(home.registerFee * 10**18/_currentRate);
 			}
 		}
@@ -625,12 +619,12 @@ contract Rent is Owned {
 	function govReject(uint i, uint _currentRate) external onlyOwner {
 		if(i < allParties.length)
 		{
-			
+
 			var party = allParties[i];
 			var home = allHouses[i];
 			var detail = allOtherDetails[i];
 			var checks = allChecks[i];
-			
+
 			if((party.completed == true)&&(home.completed == true)&&(detail.completed == true)&&(checks.paidRegisterFee == true)&&
 				(checks.paidSecurityFee == true)&&(checks.tenantApprove == true)&&(checks.tenantCheck == true))
 			{
@@ -639,14 +633,14 @@ contract Rent is Owned {
 
 				var _tenant = party.tenant;
 				var _landlord = party.landlord;
-				
-				_landlord.transfer(home.registerFee  * 10**18 /_currentRate);
-				_tenant.transfer(home.securityFee * 10**18/_currentRate); 
+
+				_landlord.transfer(home.registerFee*10**18/_currentRate);
+				_tenant.transfer(home.securityFee*10**18/_currentRate);
 
 				party.completed = false;
 				home.completed = false;
 				detail.completed = false;
-				
+
 			}
 		}
 	}
