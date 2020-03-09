@@ -22,6 +22,8 @@ contract LeaseAtBlock is Owned {
         E
     }
     
+    uint BIN = 0;
+    
     struct Landlord {
         address eth;
         string legalName;
@@ -40,6 +42,7 @@ contract LeaseAtBlock is Owned {
     }
     
     struct House {
+        address landlord;
 		string addressHouse;
 		string type_of_property;
 		uint startEpoch;
@@ -56,20 +59,23 @@ contract LeaseAtBlock is Owned {
 		address tenant;
 		string signLandlord;
 		string signTenant;
+		string signHCR;
+		uint BIN;
 		Stage status;
 		bool isCompleted;
 	}
 	
-	House[] houseArray;
-	Lease[] leaseArray;
 	Tenant[] tenantArray;
 	Landlord[] landlordArray;
 	
 	mapping(address => Tenant) public tenantMapping;
 	mapping(address => Landlord) public landlordMapping;
+	mapping(address => House) public houseRegisterArray;
+	mapping(uint => House) public houseArray;
+	mapping(uint => Lease) public leaseArray;
 	
 	// address of other creator will determine the lease
-	mapping(address => Lease) leaseRequestArray;
+	mapping(uint => Lease) leaseRequestArray;
 	
 	
 	modifier onlyTenant() {
@@ -102,6 +108,8 @@ contract LeaseAtBlock is Owned {
                     HCR FUNCIONS
     ***************************************************************/
     
+    
+    
 	function acceptTenant(address _tenantAddress) public onlyOwner {
 	    tenantMapping[_tenantAddress].isActive = true;
 	    tenantArray.push(tenantMapping[_tenantAddress]);
@@ -112,8 +120,23 @@ contract LeaseAtBlock is Owned {
 	    landlordArray.push(landlordMapping[_landlordAddress]);
 	}
 	
-	function acceptHouseRequest(uint _houseId) public onlyOwner {
-	    houseArray[_houseId].enrolled = true;
+	function acceptHouseRequest(address _addressOfLandlord) public onlyOwner {
+	    require(houseRegisterArray[_addressOfLandlord].enrolled == false, "House register is not found");
+	    houseRegisterArray[_addressOfLandlord].enrolled = true;
+	    houseArray[BIN] = houseRegisterArray[_addressOfLandlord];
+	    BIN++;
+	}
+	
+	function HCRsignLeaseAgreement(uint _BIN, string memory _signHCRterm) 
+    public 
+    {
+	    leaseRequestArray[_BIN].signHCR = _signHCRterm;
+	    leaseRequestArray[_BIN].isCompleted = true;
+	    
+	    leaseArray[_BIN] = leaseRequestArray[_BIN];
+	  
+	    delete leaseRequestArray[_BIN];
+	    
 	}
 	
 
@@ -125,42 +148,35 @@ contract LeaseAtBlock is Owned {
     function houseRegister(string memory _addressHouse, string memory type_of_property, uint _startEpoch, uint _endEpoch, uint _monthDuration, uint _rentAmount, uint _securityFee, uint _registerFee) 
     public 
     {
-	    House memory newHouse = House(_addressHouse, type_of_property, _startEpoch, _endEpoch, _monthDuration, _rentAmount, _securityFee, _registerFee, false);
-	    houseArray.push(newHouse);
+	    House memory newHouse = House(msg.sender, _addressHouse, type_of_property, _startEpoch, _endEpoch, _monthDuration, _rentAmount, _securityFee, _registerFee, false);
+	    houseRegisterArray[msg.sender] = newHouse;
 	}
 	
-	function landlordCreateLeaseAgreement(address _tenantAddress, string memory _signLandlord) 
+	function landlordSignLeaseAgreement(uint _BIN, string memory _signLandlord) 
     public 
     {
-	    Lease memory newLease = Lease(msg.sender, _tenantAddress, _signLandlord, "", Stage.O, false);
-	    leaseRequestArray[msg.sender] = newLease;
+	    leaseRequestArray[_BIN].signLandlord = _signLandlord;
+	    
 	}
-	
-	
-	
-	
+
 	/**************************************************************
                     TENANT FUNCIONS
     ***************************************************************/
     
-    function tenantCreateLeaseAgreement(address _landlordAddress, string memory _signTenant) 
+    function applyToHouse(uint _BIN, string memory _signTenant) 
     public 
     {
-	    Lease memory newLease = Lease(msg.sender, _landlordAddress, "", _signTenant, Stage.O, false);
-	    leaseRequestArray[msg.sender] = newLease;
+        address landlord = houseArray[_BIN].landlord;
+	    Lease memory newLease = Lease(landlord, msg.sender, "", _signTenant, "", _BIN, Stage.O, false);
+	    leaseRequestArray[_BIN] = newLease;
 	}
     
-    function acceptLeaseAgreement(address _landlordAddress, string memory _signTerm) 
+    function tenantSignLeaseAgreement(uint _BIN, string memory _signTerm) 
     public 
     {
-	    leaseRequestArray[_landlordAddress].signTenant = _signTerm;
-	    leaseRequestArray[_landlordAddress].isCompleted = true;
-	    
-	    // push to lease array
-	    leaseArray.push(leaseRequestArray[_landlordAddress]);
-	    // delete lease from request array
-	    delete leaseRequestArray[_landlordAddress];
+	    leaseRequestArray[_BIN].signTenant = _signTerm;
 	}
+	
 
 
     /**************************************************************
@@ -169,38 +185,6 @@ contract LeaseAtBlock is Owned {
 	function getLease(uint _leaseId) public view returns(address, address, string memory, string memory, Stage) {
 	    return (leaseArray[_leaseId].landlord, leaseArray[_leaseId].tenant, leaseArray[_leaseId].signLandlord, leaseArray[_leaseId].signTenant, leaseArray[_leaseId].status);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
