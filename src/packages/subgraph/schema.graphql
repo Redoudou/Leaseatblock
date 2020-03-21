@@ -1,0 +1,35 @@
+
+type Landlord @entity {
+  id: ID!
+  address: string!
+  approved: boolean!
+}
+
+type House @entity {
+  id: ID!
+  houseInfo: string!
+  LandlordAddress: string!
+  rentFee: BigInt!
+  rentIncrement: BigInt!
+  approved: boolean!
+}
+
+type Tenant @entity {
+  id: ID!
+  address: string!
+  tenantInfo: string!
+  approved: boolean!
+}
+
+type Lease @entity {
+  id: ID!
+  LandlordAddress: string!
+  TenantAddress: string!
+  HouseAddress: string!
+  startDate: string!
+  endDate: string!
+  status: string!
+  depositAmount: BigInt!
+  #TODO: contract spec nbd
+}
+
