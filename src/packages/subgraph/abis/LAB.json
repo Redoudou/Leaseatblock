@@ -1,0 +1,506 @@
+[
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_addressOfLandlord",
+				"type": "address"
+			}
+		],
+		"name": "acceptHouseRequest",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_landlordAddress",
+				"type": "address"
+			}
+		],
+		"name": "acceptLandlord",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_tenantAddress",
+				"type": "address"
+			}
+		],
+		"name": "acceptTenant",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BIN",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_signTenant",
+				"type": "string"
+			}
+		],
+		"name": "applyToHouse",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BIN",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_signHCRterm",
+				"type": "string"
+			}
+		],
+		"name": "HCRsignLeaseAgreement",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_addressHouse",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "type_of_property",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_startEpoch",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_endEpoch",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_monthDuration",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_rentAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_securityFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_registerFee",
+				"type": "uint256"
+			}
+		],
+		"name": "houseRegister",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_legalName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_signTerm",
+				"type": "string"
+			}
+		],
+		"name": "landlordRegister",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BIN",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_signLandlord",
+				"type": "string"
+			}
+		],
+		"name": "landlordSignLeaseAgreement",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_legalName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_signTerm",
+				"type": "string"
+			}
+		],
+		"name": "tenantRegister",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BIN",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_signTerm",
+				"type": "string"
+			}
+		],
+		"name": "tenantSignLeaseAgreement",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_BIN",
+				"type": "uint256"
+			}
+		],
+		"name": "getLease",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			},
+			{
+				"internalType": "enum LeaseAtBlock.Stage",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "houseArray",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "landlord",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "addressHouse",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "type_of_property",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startEpoch",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endEpoch",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "monthDuration",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "rentAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "securityFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "registerFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "enrolled",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "houseRegisterArray",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "landlord",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "addressHouse",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "type_of_property",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "startEpoch",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "endEpoch",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "monthDuration",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "rentAmount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "securityFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "registerFee",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bool",
+				"name": "enrolled",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "landlordMapping",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "eth",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "legalName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "signTerms",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isActive",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "leaseArray",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "landlord",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "tenant",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "signLandlord",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "signTenant",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "signHCR",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "BIN",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum LeaseAtBlock.Stage",
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"internalType": "bool",
+				"name": "isCompleted",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "tenantMapping",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "eth",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "legalName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "email",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "signTerms",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isActive",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
