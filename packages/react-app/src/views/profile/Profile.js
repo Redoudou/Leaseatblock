@@ -2,14 +2,25 @@ import React from 'react'
 
 import {ethers} from 'ethers'
 
-import {Link, BrowserRouter} from 'react-router-dom'
+import {Link, Switch, BrowserRouter, Route} from 'react-router-dom'
+
+const getUserID = () => {
+
+  const defaultProvider = ethers.getDefaultProvider()
+
+  return defaultProvider
+}
+
 
 const Profile = () => {
+
+  React.useEffect(() => {
+    console.log(getUserID())
+  })
+
   return (
     <div>
-      <BrowserRouter>
-
-      </BrowserRouter>
+      <h3>Profile</h3>
     </div>
   )
 }

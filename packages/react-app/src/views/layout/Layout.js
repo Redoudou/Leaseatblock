@@ -16,12 +16,15 @@ const Layout = () => {
       <BrowserRouter>
         <AppBar color='inherit'>
           <Toolbar>
-            <Link to='/'></Link>
-            <Link to='/user/:slug'>Profile</Link>
-            <Link to='/createlease'>Create new Lease</Link>
+            <Link className={classes.logo} to='/'>Lease on the Block</Link>
+            <Link className={classes.link} to='/about'>About</Link>
+            <Link className={classes.link} to='/faq'>FAQ</Link>
+            <Link className={classes.link} to='/profile'>Profile</Link>
           </Toolbar>
         </AppBar>
-        <Routes></Routes>
+        <div className={classes.page}>
+          <Routes></Routes>
+        </div>
       </BrowserRouter>
     </div>
   )
