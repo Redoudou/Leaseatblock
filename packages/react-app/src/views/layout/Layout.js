@@ -6,6 +6,7 @@ import {Link, Switch, BrowserRouter, Route} from 'react-router-dom'
 import styles from './styles/Layout'
 
 import Routes from '../../router/Router'
+import Footer from './Footer'
 
 const useStyles = makeStyles(styles)
 
@@ -26,6 +27,7 @@ const Layout = () => {
           <Routes></Routes>
         </div>
       </BrowserRouter>
+      <Footer/>
     </div>
   )
 }

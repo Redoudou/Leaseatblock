@@ -26,9 +26,9 @@ const LANDLORD_EMAIL = "contact email for landlord";
 const TENANT_EMAIL = "contact email for tenant";
 
 const URL = "https://lib.openlaw.io/api/v1/default"; //url for your openlaw instance eg. "http://myinstancename.openlaw.io"
-const TEMPLATE_NAME = "Draft Ohio Residential Lease"; //name of template stored on Openlaw
-const OPENLAW_USER = "oliver.renwick@gmail.com"; //add your Openlaw login email
-const OPENLAW_PASSWORD = "Palabra12"; //add your Openlaw password
+const TEMPLATE_NAME = "LEASE ON THE BLOCK"; //name of template stored on Openlaw
+const OPENLAW_USER = "phuong.nguyen@sotatek.com"; //add your Openlaw login email
+const OPENLAW_PASSWORD = "123456Aa@"; //add your Openlaw password
 //create config
 console.log("user: " + process.env.REACT_APP_OPENLAW_USER);
 const openLawConfig = {
