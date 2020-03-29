@@ -2,7 +2,13 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://NTTMai.github.io/Lease-On-The-Block",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NTTMai/Lease-On-The-Block"
+  },
   "dependencies": {
+    "gh-pages": "^2.2.0",
     "openlaw": "^0.2.36",
     "openlaw-elements": "^1.1.2",
     "react": "16.11.0",
@@ -10,13 +16,16 @@
     "react-scripts": "3.2.0",
     "semantic-ui": "^2.4.2",
     "semantic-ui-react": "^0.88.2",
+    "truffle-contract": "^4.0.31",
     "web3": "1.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,39 +1,18 @@
-// import React, { Component, Fragment, useEffect, useState } from "react";
-import React from "react";
+import React, { Component } from "react";
+import BillOfSaleContract from "./contracts/BillOfSale.json";
+import getWeb3 from "./getWeb3";
+import { Container, Grid, Button, Form } from "semantic-ui-react";
 import { APIClient, Openlaw } from "openlaw";
-import { Container, Loader, Button } from "semantic-ui-react";
-// import "semantic-ui-css/semantic.min.css";
-import "dotenv";
-import OpenLawForm from "openlaw-elements";
-import "../node_modules/openlaw-elements/dist/openlaw-elements.min.css";
-// import SubmitButton from "../submitButton.js"
-// import { render } from 'react-dom';
+import truffleContract from "truffle-contract";
 
-require("dotenv").config();
+import "./App.css";
 
-const EFFECTIVE_DATE = "Effective Date";
-const LANDLORD_NAME = "Landlord Name";
-const TENANT_NAME = "Tenant Name";
-const PROPERTY_NAME = "Property name";
-const LEASE_COMMENCEMENT_DATE = "Lease begin date";
-const LEASE_TERMINATION_DATE = "Lease end date";
-const RENT_AMOUNT = "Amount of Rent Due";
-const RENT_DUE_DATE = "Date rent is due";
-const RETURNED_CHECK_FEE = "Fee for returned checks";
-const RENT_INCREASE_DATE = "Date rent increases after default";
-const SECURITY_DEPOSIT_AMOUNT = "Amount due for security deposit";
-const PREMISES_DESCRIPTION = "Description of property";
-const DAILY_ANIMAL_RESTRICTION_VIOLATION_FEE = "Fee for having animals";
-const LANDLORD_NOTICE_ADDRESS = "Notice for mail to landlord";
-const LANDLORD_EMAIL = "contact email for landlord";
-const TENANT_EMAIL = "contact email for tenant";
-
+//PLEASE SUPPLY YOUR OWN LOGIN CREDENTIALS FOR OPENLAW
 const URL = "https://lib.openlaw.io/api/v1/default"; //url for your openlaw instance eg. "http://myinstancename.openlaw.io"
-const TEMPLATE_NAME = "LEASE ON THE BLOCK"; //name of template stored on Openlaw
+const TEMPLATE_NAME = "OPENLEASE"; //name of template stored on Openlaw
 const OPENLAW_USER = "phuong.nguyen@sotatek.com"; //add your Openlaw login email
 const OPENLAW_PASSWORD = "123456Aa@"; //add your Openlaw password
 //create config
-console.log("user: " + OPENLAW_USER);
 const openLawConfig = {
   server: URL,
   templateName: TEMPLATE_NAME,
@@ -41,243 +20,382 @@ const openLawConfig = {
   password: OPENLAW_PASSWORD
 };
 
+//create an instance of the API client with url as parameter
 const apiClient = new APIClient(URL);
 
-class App extends React.Component {
-  // initial state declaration
+class App extends Component {
+  //initial state of variables for BillOfSale Template, and web3,etc
   state = {
-    // Template values
-    Effective_Date: undefined,
-    Landlord_Name: undefined,
-    Tenant_Name: undefined,
-    Property_Location: undefined,
-    Lease_Commencement_Date: undefined,
-    Lease_Termination_Date: undefined,
-    Rent_Amount: undefined,
-    Rent_Due_Date: undefined,
-    Returned_Check_Fee: undefined,
-    Rent_Increase_Date: undefined,
-    Security_Deposit_Amount: undefined,
-    Premises_Description: undefined,
-    Daily_Animal_Restriction_Violation_Fee: undefined,
-    Landlord_Notice_Address: undefined,
-    Landlord_Email: undefined,
-    Tenant_Email: undefined,
-
-    // OpenLaw variables
-    title: "",
-    template: "",
+    balance: 0,
+    scBalance: 0,
+    seller: "",
+    scSeller: "",
+    buyer: "",
+    scBuyer: "",
+    descr: "",
+    price: "",
+    scPrice: "",
+    statusMessage: "",
+    buyerEmail: "",
+    sellerEmail: "",
+    web3: null,
+    accounts: null,
+    contract: null,
+    myTemplate: null,
+    myContent: null,
     creatorId: "",
-    compiledTemplate: null,
-    parameters: {},
-    executionResult: null,
-    variables: null,
-    draftId: "",
-
-    UserObject: {}
+    myCompiledTemplate: null,
+    draftId: ""
   };
 
   componentDidMount = async () => {
     try {
-      // Instantiate OpenLaw API, log in
+      //Get network provider and web3 instance.
+      const web3 = await getWeb3();
+      const accounts = await web3.eth.getAccounts();
+      console.log(accounts[0]);
+      // Get the contract instance.
+      // const networkId = await web3.eth.net.getId();
+      //use BillofSale to create an instance of smart contract
+      // const deployedNetwork = BillOfSaleContract.networks[networkId];
+      // const instance = new web3.eth.Contract(
+      //   BillOfSaleContract.abi,
+      //   deployedNetwork && deployedNetwork.address
+      // );
+
+      // Get the contract instance.
+      const Contract = truffleContract(BillOfSaleContract);
+      Contract.setProvider(web3.currentProvider);
+      const instance = await Contract.deployed();
+
+      // Set web3, accounts, and contract to the state, and then proceed with an
+      // example of interacting with the contract's methods.
+      this.setState({ web3, accounts, contract: instance }, this.runExample);
+
+      //Login to your instance with your email and password, return JSON
       apiClient
         .login(openLawConfig.userName, openLawConfig.password)
         .then(console.log);
-      console.log("logged in!");
 
-      //Retrieve your OpenLaw template by name
-      const template = await apiClient.getTemplate(openLawConfig.templateName);
+      //Retrieve your OpenLaw template by name, use async/await
+      const myTemplate = await apiClient.getTemplate(
+        openLawConfig.templateName
+      );
 
-      //Pass the returned object's title into a variable
-      const title = template.title;
+      //pull properties off of JSON and make into variables
+      const myTitle = myTemplate.title;
+      //set title state
+      this.setState({ myTitle });
 
-      //Pass the template content into a variable
-      const myContent = template.content;
-      console.log("Template content: ", myContent);
+      //Retreive the OpenLaw Template, including MarkDown
+      const myContent = myTemplate.content;
+      this.setState({ myTemplate });
+      console.log("myTemplate..", myTemplate);
 
-      //Get the most recent version of the template
+      //Get the most recent version of the OpenLaw API Tutorial Template
       const versions = await apiClient.getTemplateVersions(
         openLawConfig.templateName,
         20,
         1
       );
-      console.log("Template versions: ", versions[0], versions.length);
+      console.log("versions..", versions[0], versions.length);
 
       //Get the creatorID from the template.
       const creatorId = versions[0].creatorId;
       console.log("creatorId..", creatorId);
+      this.setState({ creatorId });
 
-      //Get my compiled Template
-      const compiledTemplate = await Openlaw.compileTemplate(myContent);
-      if (compiledTemplate.isError) {
-        throw "Template errror: " + compiledTemplate.errorMessage;
+      //Get my compiled Template, for use in rendering the HTML in previewTemplate
+      const myCompiledTemplate = await Openlaw.compileTemplate(myContent);
+      if (myCompiledTemplate.isError) {
+        throw "my Template error" + myCompiledTemplate.errorMessage;
       }
-      this.setState({ compiledTemplate });
-      console.log("content inside didMount: " + this.state.template.content);
-
-      const parameters = {};
-      const { executionResult, errorMessage } = await Openlaw.execute(
-        compiledTemplate.compiledTemplate,
-        {},
-        parameters
+      console.log("my compiled template..", myCompiledTemplate);
+      this.setState({ myCompiledTemplate });
+    } catch (error) {
+      // Catch any errors for any of the above operations.
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
       );
+      console.error(error);
+    }
+  };
 
-      console.log("execution result: ", executionResult);
+  /*Preview OpenLaw Template*/
+  previewTemplate = async event => {
+    console.log("preview of openlaw draft..");
+    event.preventDefault();
+    //Display HTML
+    try {
+      const params = {
+        "Seller Address": this.state.seller,
+        "Buyer Address": this.state.buyer,
+        "Purchased Item": this.state.descr,
+        "Purchase Price": this.state.price
+      };
 
-      if (errorMessage) {
-        console.error("OpenLaw Execution Error: ", errorMessage);
-      }
-
-      const variables = await Openlaw.getExecutedVariables(executionResult, {});
-      console.log("variables:", variables);
-
-      this.setState({
-        title,
-        template,
-        creatorId,
-        compiledTemplate,
-        parameters,
-        executionResult,
-        variables
-      });
+      const executionResult = await Openlaw.execute(
+        this.state.myCompiledTemplate.compiledTemplate,
+        {},
+        params
+      );
+      const agreements = await Openlaw.getAgreements(
+        executionResult.executionResult
+      );
+      const html = await Openlaw.renderForReview(agreements[0].agreement, {});
+      console.log("this is the html..", html);
+      //set html state
+      this.setState({ html });
     } catch (error) {
       //try
-      console.log("unsuccessful submission", error);
+
+      console.log("draft not submitted yet..", error);
     }
   };
 
-  onChange = (key, value) => {
-    switch (key) {
-      case EFFECTIVE_DATE:
-        this.setState({ Effective_Date: value });
-        break;
-      case LANDLORD_NAME:
-        this.setState({ Landlord_Name: value });
-        break;
-      case TENANT_NAME:
-        this.setState({ Tenant_Name: value });
-        break;
-      case PROPERTY_NAME:
-        this.setState({ Property_Name: value });
-        break;
-      case LEASE_COMMENCEMENT_DATE:
-        this.setState({ Lease_Commencement_Date: value });
-        break;
-      case LEASE_TERMINATION_DATE:
-        this.setState({ Lease_Termination_Date: value });
-        break;
-      case RENT_AMOUNT:
-        this.setState({ Rent_Amount: value });
-        break;
-      case RENT_DUE_DATE:
-        this.setState({ Rent_Due_Date: value });
-        break;
-      case RETURNED_CHECK_FEE:
-        this.setState({ Returned_Check_Fee: value });
-        break;
-      case RENT_INCREASE_DATE:
-        this.setState({ Rent_Increase_Date: value });
-        break;
-      case SECURITY_DEPOSIT_AMOUNT:
-        this.setState({ Security_Deposit_Amount: value });
-        break;
-      case PREMISES_DESCRIPTION:
-        this.setState({ Premises_Description: value });
-        break;
-      case DAILY_ANIMAL_RESTRICTION_VIOLATION_FEE:
-        this.setState({ Daily_Animal_Restriction_Violation_Fee: value });
-        break;
-      case LANDLORD_NOTICE_ADDRESS:
-        this.setState({ Landlord_Notice_Address: value });
-        break;
-      case LANDLORD_EMAIL:
-        this.setState({ Landlord_Email: value });
-        break;
-      case TENANT_EMAIL:
-        this.setState({ Tenant_Email: value });
-        break;
-    }
-    console.log("KEY: ", key, "VALUE: ", value);
+  /*HELPERS*/
+  // runExample = async () => {
+  //   const { accounts, contract } = this.state;
+  //   console.log("example openlaw starting");
+  //   console.log("Account: " + accounts);
+  //   console.log("Contract: " + contract);
+  // };
+  /*converts an email address into an object, to be used with uploadDraft
+or upLoadContract methods from the APIClient.
+as of " OpenLaw v.0.1.29" this function convertUserObject is no longer  needed. */
+
+  // convertUserObject = (original) => {
+  //   const object = {
+  //     id: {
+  //       id: original.id
+  //     },
+  //     email: original.email,
+  //     identifiers: [
+  //       {
+  //         identityProviderId: "openlaw",
+  //         identifier: original.identifiers[0].id
+  //       }
+  //     ]
+  //   }
+  //   return object;
+  // }
+
+  /*Build Open Law Params to Submit for Upload Contract*/
+
+  buildOpenLawParamsObj = async (myTemplate, creatorId) => {
+    /*
+       -  getUserDetails() is deprecated as of OpenLaw "0.1.28"
+       -  no longer need const sellerUser and const buyerUser
+        - no longer need JSON.stringify(this.convertUserObject())
+    */
+
+    //const sellerUser = await apiClient.getUserDetails(this.state.sellerEmail);
+    //const buyerUser = await apiClient.getUserDetails(this.state.buyerEmail);
+
+    const object = {
+      templateId: myTemplate.id,
+      title: myTemplate.title,
+      text: myTemplate.content,
+      creator: this.state.creatorId,
+      parameters: {
+        "Seller Address": this.state.seller,
+        "Buyer Address": this.state.buyer,
+        "Purchased Item": this.state.descr,
+        "Purchase Price": this.state.price,
+        "Seller Signatory Email": this.state.sellerEmail, //JSON.stringify(this.convertUserObject(sellerUser)),
+        "Buyer Signatory Email": this.state.buyerEmail //JSON.stringify(this.convertUserObject(buyerUser)),
+      },
+      overriddenParagraphs: {},
+      agreements: {},
+      readonlyEmails: [],
+      editEmails: [],
+      draftId: this.state.draftId
+    };
+    return object;
   };
 
-  executeContract = () => {
-    const {
-      // Template values
-      Effective_Date,
-      Landlord_Name,
-      Tenant_Name,
-      Property_Name,
-      Lease_Commencement_Date,
-      Lease_Termination_Date,
-      Rent_Amount,
-      Rent_Due_Date,
-      Returned_Check_Fee,
-      Rent_Increase_Date,
-      Security_Deposit_Amount,
-      Premises_Description,
-      Daily_Animal_Restriction_Violation_Fee,
-      Landlord_Notice_Address,
-      Landlord_Email,
-      Tenant_Email
-    } = this.state;
-
-    const execParameters = {
-      [EFFECTIVE_DATE]: Effective_Date,
-      [LANDLORD_NAME]: Landlord_Name,
-      [TENANT_NAME]: Tenant_Name,
-      [PROPERTY_NAME]: Property_Name,
-      [LEASE_COMMENCEMENT_DATE]: Lease_Commencement_Date,
-      [LEASE_TERMINATION_DATE]: Lease_Termination_Date,
-      [RENT_AMOUNT]: Rent_Amount,
-      [RENT_DUE_DATE]: Rent_Due_Date,
-      [RETURNED_CHECK_FEE]: Returned_Check_Fee,
-      [RENT_INCREASE_DATE]: Rent_Increase_Date,
-      [SECURITY_DEPOSIT_AMOUNT]: Security_Deposit_Amount,
-      [PREMISES_DESCRIPTION]: Premises_Description,
-      [DAILY_ANIMAL_RESTRICTION_VIOLATION_FEE]: Daily_Animal_Restriction_Violation_Fee,
-      [LANDLORD_NOTICE_ADDRESS]: Landlord_Notice_Address,
-      [LANDLORD_EMAIL]: Landlord_Email,
-      [TENANT_EMAIL]: Tenant_Email
-    };
-
-    const signatures = {
-      // "cdc5576a-21d4-4d50-a2ca-354fba5e4eca":"phuong.nguyen@sotatek.com",
-      // "84da0b60-a956-45a2-87e8-27c00bbee94e":"thaiphuongn1@gmail.com"
-
-      "phuong.nguyen@sotatek.com": "phuong.nguyen@sotatek.com",
-      "thaiphuongn1@gmail.com": "thaiphuongn1@gmail.com"
-    };
+  onSubmit = async event => {
+    console.log("submiting to OL..");
+    event.preventDefault();
 
     try {
-      Openlaw.executeForReview(
-        this.state.compiledTemplate,
-        signatures,
-        {},
-        execParameters
-      );
-    } catch (error) {
-      //end try
+      //login to api
+      apiClient.login(openLawConfig.userName, openLawConfig.password);
+      console.log("apiClient logged in");
 
-      console.log("unsuccessful submission", error);
+      //add Open Law params to be uploaded
+      const uploadParams = await this.buildOpenLawParamsObj(
+        this.state.myTemplate,
+        this.state.creatorId
+      );
+      console.log("parmeters from user..", uploadParams.parameters);
+      console.log("all parameters uploading...", uploadParams);
+
+      //uploadDraft, sends a draft contract to "Draft Management", which can be edited.
+      const draftId = await apiClient.uploadDraft(uploadParams);
+      console.log("draft id..", draftId);
+      this.setState({ draftId });
+
+      //uploadContract, this sends a completed contract to "Contract Management", where it can not be edited.
+      const result = await apiClient.uploadContract(uploadParams);
+      console.log("results..", result);
+    } catch (error) {
+      console.log(error);
     }
+  };
+
+  onFundClick = async () => {
+    const { contract, accounts, web3, scPrice } = this.state;
+    web3.eth.sendTransaction({
+      from: accounts[0],
+      to: contract.address,
+      value: scPrice
+    });
+  };
+
+  onConfirmClick = async () => {
+    const { contract, accounts } = this.state;
+    contract.confirmReceipt({ from: accounts[0] });
+  };
+
+  runExample = async () => {
+    const { contract, web3 } = this.state;
+
+    const scBalance = await web3.eth.getBalance(contract.address);
+    const scSeller = await contract.seller();
+    const scBuyer = await contract.buyer();
+    const descr = await contract.descr();
+    const priceBN = await contract.price();
+    const scPrice = priceBN.toString();
+    const status = await contract.confirmed();
+    const statusMessage = this.setStatusMessage(
+      status,
+      parseInt(scBalance),
+      scPrice
+    );
+    this.setState({
+      scBalance,
+      scSeller,
+      scBuyer,
+      descr,
+      scPrice,
+      statusMessage
+    });
+  };
+
+  setStatusMessage = (status, balance, price) => {
+    return status
+      ? "Receipt Confirmed!"
+      : balance === price
+      ? "Payment Made"
+      : "Awaiting Payment";
   };
 
   render() {
-    const { variables, parameters, executionResult } = this.state;
-    if (!executionResult) return <Loader active />;
+    if (!this.state.web3) {
+      return <div>Loading Web3, accounts, and contract...</div>;
+    }
     return (
-      <Container text style={{ marginTop: "7em" }}>
-        <h1>Lease On The Block</h1>
-        <OpenLawForm
-          apiClient={apiClient}
-          executionResult={executionResult}
-          parameters={parameters}
-          onChangeFunction={this.onChange}
-          openLaw={Openlaw}
-          variables={variables}
-        />
-        <Button onClick={this.executeContract}>Submit for Signatures</Button>
-      </Container>
+      <div className="App">
+        <Container>
+          <h1>OpenLaw </h1>
+          <h2>{this.state.myTitle} </h2>
+
+          {/* Show HTML in 'Preview' beware dangerouslySet... for xss vulnerable */}
+          <Grid columns={2}>
+            <Grid.Column>
+              <h3>1. Send Draft to OpenLaw</h3>
+              <Form onSubmit={this.onSubmit}>
+                <Form.Field>
+                  <label>Landlord Ethereum Address</label>
+                  <input
+                    placeholder="Seller Ethereum"
+                    value={this.state.seller}
+                    onChange={event =>
+                      this.setState({ seller: event.target.value })
+                    }
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label>Lease Description</label>
+                  <input
+                    placeholder="sale item"
+                    value={this.state.descr}
+                    onChange={event =>
+                      this.setState({ descr: event.target.value })
+                    }
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label>Tenant Ethereum Address</label>
+                  <input
+                    placeholder="buyer"
+                    value={this.state.buyer}
+                    onChange={event =>
+                      this.setState({ buyer: event.target.value })
+                    }
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label>Rent fee per month</label>
+                  <input
+                    placeholder="price"
+                    value={this.state.price}
+                    onChange={event =>
+                      this.setState({ price: event.target.value })
+                    }
+                  />
+                </Form.Field>
+
+                <Form.Field>
+                  <label>Landlord Email</label>
+                  <input
+                    type="text"
+                    placeholder="Seller Email Address"
+                    onChange={event =>
+                      this.setState({ sellerEmail: event.target.value })
+                    }
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label>Tenant Email</label>
+                  <input
+                    type="text"
+                    placeholder="Buyer Email Address"
+                    onChange={event =>
+                      this.setState({ buyerEmail: event.target.value })
+                    }
+                  />
+                </Form.Field>
+                <Button color="pink" type="submit">
+                  {" "}
+                  Submit Draft{" "}
+                </Button>
+              </Form>
+            </Grid.Column>
+
+            <Grid.Column>
+              <h3>2. Preview the draft sent </h3>
+              <div dangerouslySetInnerHTML={{ __html: this.state.html }} />
+              <Button onClick={this.previewTemplate}>Preview</Button>
+              <h3>3. Interact with smart contract </h3>
+              <div>
+                Agreement Status: <strong>{this.state.statusMessage}</strong>
+              </div>
+              <div>Contract Address: {this.state.contract.address}</div>
+              <div>Contract Balance: {this.state.scBalance / 10 ** 18}</div>
+              <div>Seller: {this.state.scSeller}</div>
+              <div>Buyer: {this.state.scBuyer}</div>
+              <div>Description: {this.state.descr}</div>
+              <div>Price: {this.state.scPrice / 10 ** 18} ETH</div>
+              <Button onClick={() => this.onFundClick()}>Fund Contract</Button>
+              <Button onClick={() => this.onConfirmClick()}>
+                Confirm Receipts
+              </Button>
+            </Grid.Column>
+          </Grid>
+        </Container>
+      </div>
     );
   }
 }
