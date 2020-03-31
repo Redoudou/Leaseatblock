@@ -1,13 +1,17 @@
 import React from 'react'
 
-import LandingGov from './LandingGov'
-import LandingLord from './LandingLord'
+import {Typography, Grid, Container, Card} from '@material-ui/core'
 
 
 const Landing = () => {
   return (
     <div>
       <h3>landing</h3>
+      <Container>
+        <Grid>
+          <Typography>lease</Typography>
+        </Grid>
+      </Container>
     </div>
   )
 }

@@ -1,33 +1,43 @@
 import React from 'react'
-import {AppBar, Toolbar, Typography} from '@material-ui/core'
-import {makeStyles} from '@material-ui/core/styles'
+import {AppBar, Toolbar, Typography, Tab, Grid, Tabs} from '@material-ui/core'
 import {Link, Switch, BrowserRouter, Route} from 'react-router-dom'
+
+import {ThemeProvider, createMuiTheme, responsiveFontSizes, withStyles, makeStyles} from '@material-ui/core/styles'
+
+import Routes from '../../router/Router'
 
 import styles from './styles/Layout'
 
-import Routes from '../../router/Router'
+import Navigation from './Navigation'
 import Footer from './Footer'
 
 const useStyles = makeStyles(styles)
 
-const Layout = () => {
+const makeTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#250A3C'
+    },
+    secondary: {
+      main: '#CFEBEC'
+    }
+  }
+})
+
+
+const Layout = (props) => {
   const classes = useStyles()
+  const theme = responsiveFontSizes(makeTheme)
+
   return (
     <div className={classes.root}>
-      <BrowserRouter>
-        <AppBar color='inherit'>
-          <Toolbar>
-            <Link className={classes.logo} to='/'>Lease on the Block</Link>
-            <Link className={classes.link} to='/about'>About</Link>
-            <Link className={classes.link} to='/faq'>FAQ</Link>
-            <Link className={classes.link} to='/profile'>Profile</Link>
-          </Toolbar>
-        </AppBar>
-        <div className={classes.page}>
-          <Routes></Routes>
-        </div>
-      </BrowserRouter>
-      <Footer/>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <Navigation/>
+          <Routes/>
+          <Footer/>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   )
 }

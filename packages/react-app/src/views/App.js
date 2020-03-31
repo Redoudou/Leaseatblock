@@ -4,16 +4,9 @@ import { ethers } from 'ethers'
 import { useQuery } from '@apollo/react-hooks'
 import './App.css'
 
-import {BrowserRouter, Route} from 'react-router-dom'
 
-import {ThemeProvider} from '@material-ui/core/styles'
-
-//non router test
 import Layout from './layout/Layout'
-import Routes from '../router/Router'
-const theme = {
-  backgroundColor: ''
-}
+
 
 const GET_TRANSFERS = gql`
 {
@@ -39,7 +32,6 @@ async function readOnchainBalance() {
 
 function App() {
   const { loading, error, data } = useQuery(GET_TRANSFERS);
-
   /*React.useEffect(() => {
     if (!loading && !error && data && data.transfers) {
       console.log({ transfers: data.transfers });
