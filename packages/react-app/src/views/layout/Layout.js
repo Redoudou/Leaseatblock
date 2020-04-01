@@ -20,21 +20,24 @@ const makeTheme = createMuiTheme({
     },
     secondary: {
       main: '#CFEBEC'
+    },
+    error: {
+      main: '#E86D48'
     }
   }
 })
 
-
-const Layout = (props) => {
+const Layout = () => {
   const classes = useStyles()
   const theme = responsiveFontSizes(makeTheme)
-
   return (
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Navigation/>
-          <Routes/>
+          <div className={classes.page}>
+            <Routes/>
+          </div>
           <Footer/>
         </BrowserRouter>
       </ThemeProvider>

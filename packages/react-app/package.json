@@ -27,7 +27,6 @@
     "ethers-web3-bridge": "0.0.1",
     "graphql": "^14.6.0",
     "openlaw": "^0.2.39",
-    "passport-google-oauth": "^2.0.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-router-dom": "^5.1.2",

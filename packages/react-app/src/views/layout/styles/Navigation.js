@@ -10,16 +10,16 @@ const styles = {
   logo: {
   },
   tabs: {
-    color: 'white',
+    color: '#CFEBEC',
     marginTop: '1em',
-    marginLeft: '2em'
+    marginLeft: '2em',
   },
   toolbar: {
     color: '#373737'
   },
   spacer: {
     minHeight: '4em'
-  }
+  },
 }
 
 

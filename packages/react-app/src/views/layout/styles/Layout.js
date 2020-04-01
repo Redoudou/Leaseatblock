@@ -1,7 +1,11 @@
 
 const styles = {
   root: {
-    backgroundColor: '#CFEBEC'
+    backgroundColor: 'white'
+  },
+  page: {
+    maxWidth: '1200px',
+    margin: '0 auto'
   }
 }
 

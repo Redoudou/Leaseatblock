@@ -10,8 +10,6 @@ import Profile from '../views/profile/Profile'
 
 import CreateLease from '../actions/createLease/CreateLease'
 
-import ScrollToTop from './ScrollToTop'
-
 
 const Routes = () => {
   return (

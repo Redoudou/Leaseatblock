@@ -1,16 +1,20 @@
 const styles = {
   root: {
     width: '100%',
-    marginTop: '5em'
+    marginTop: '5em',
+    marginBottom: '0em'
   },
   social: {
-    color: '#CFEBEC',
+    color: 'white',
+  },
+  logo:{
+    marginTop: '0em'
   },
   footerPrimary: {
     color: '#250A3C',
     textAlign: 'right',
     marginRight: '1em',
-    top: '30%',
+    top: '25%',
     position: 'relative',
   },
   footerSecondary: {
@@ -20,7 +24,7 @@ const styles = {
     paddingLeft: '.5em'
   },
   hidden: {
-    marginLeft: '.7em !important'
+    color: '#CFEBEC',
   }
 }
 

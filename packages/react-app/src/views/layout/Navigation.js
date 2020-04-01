@@ -12,18 +12,17 @@ const useStyles = makeStyles(styles)
 const AltTab = withStyles(() => ({
   root: {
     textTransform: 'none',
-    fontSize: '1em',
+    fontSize: '1.4em',
     minWidth: 80,
     '&:hover': {
-      color: 'white',
+      color: '#CFEBEC',
       opacity: 1,
     },
     '&$selected': {
-      color: 'white',
-      fontWeight: '400',
+      color: '#CFEBEC',
     },
     '&:focus': {
-      color: 'white',
+      color: '#CFEBEC',
     },
   },
   selected: {
