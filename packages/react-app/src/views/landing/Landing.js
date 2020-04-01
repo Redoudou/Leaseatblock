@@ -16,25 +16,108 @@ const Landing = () => {
       <Grid
         className={classes.c1}
         container
-        direction="row"
+        direction="row-reverse"
         justify="center"
         alignItems="center" >
-        <Grid item xs={12} sm={5} className={classes.s2}>
-          <img className={classes.logo} height='30rem' alt='LeaseOTB' src='https://storage.cloud.google.com/leaseotb-images/purplelogo2x.png' />
-          <hr/>
-          <Typography variant='h5' className={classes.title1}>
+        <Grid item xs={12} sm={12} md={7}>
+          <img className={classes.i1} src='https://storage.cloud.google.com/leaseotb-images/groupwithblocs.png'></img>
+        </Grid>
+        <Grid item xs={12} sm={12} md={5} className={classes.s1}>
+          <img className={classes.logo} height='80rem' alt='LeaseOTB' src='https://storage.cloud.google.com/leaseotb-images/purplelogo2x.png' />
+          <div className={classes.purple} />
+          <Typography variant='h5' color='primary' className={classes.title1}>
             Helping New York find and keep rent-stablized apartments
           </Typography>
-          <Button className={classes.button1} variant='contained' color='secondary' href='REPLACE WITH'>
-            <Typography variant='body1' className={classes.buttonT}>
+          <Button className={classes.button1} variant='contained' color='primary' href='REPLACE WITH'>
+            <Typography variant='body1' color='primary' className={classes.buttonT}>
               Learn More
             </Typography>
           </Button>
         </Grid>
-        <Grid item xs={12} sm={7}>
-          <img className={classes.china} src='https://storage.cloud.google.com/leaseotb-images/groupwithblocs.png'></img>
-        </Grid>
       </Grid>
+        <Grid
+          className={classes.c2}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center" >
+          <Grid item xs={12} sm={12} md={6}>
+            <img className={classes.i2} src='https://storage.cloud.google.com/leaseotb-images/pplwithlock.png'></img>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} className={classes.s2}>
+            <Card raised className={classes.cardBig}>
+              <div className={classes.orange} />
+                <Typography variant='h4' color='secondary' className={classes.title2}>
+                What is Lease on the Bloc?
+              </Typography>
+              <br />
+              <Typography variant='h5' color='secondary' className={classes.sub2}>
+                A private blockchain designed by the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled aptartments in New York City
+              </Typography>
+            </Card>
+          </Grid>
+        </Grid>
+      <div className={classes.background2}>
+        <Grid
+          className={classes.c2}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center" >
+          <Grid item xs={12} sm={12} md={12} className={classes.s2}>
+            <div className={classes.orange} />
+            <Typography variant='h4' color='primary' className={classes.title3}>
+              Why Blockchain?
+            </Typography>
+            <br />
+            <Typography variant='h5' color='primary' className={classes.sub3}>
+              A private blockchain designed by the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled aptartments in New York City
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid 
+          className={classes.c2}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={5}
+          >
+            <Grid item xs={12} sm={12} md={4}>
+              <Card raised className={classes.card}>
+                <Typography variant='h4' color='error'>
+                  Decentralization
+                </Typography>
+                <br />
+                <Typography variant='h5' color='secondary'>
+                  Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={12} md={4}>
+              <Card raised className={classes.card}>
+                <Typography variant='h4' color='error'>
+                  Consensus
+                </Typography>
+                <br />
+                <Typography variant='h5' color='secondary'>
+                  Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
+                </Typography>
+              </Card>
+            </Grid>
+            <Grid item xs={12} sm={12} md={4}>
+              <Card raised className={classes.card}>
+                <Typography variant='h4' color='error'>
+                  Immutability
+                </Typography>
+                <br />
+                <Typography variant='h5' color='secondary'>
+                  Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
+                </Typography>
+              </Card>
+            </Grid>
+          </Grid>
+      </div>
     </div>
   )
 }
