@@ -5,7 +5,8 @@ const styles = {
   },
   root: {
     paddingTop: '5em',
-    animation: '$pageLoad 3s'
+    animation: '$pageLoad 3s',
+    maxWidth: '100%'
   },
   c1: {    
     maxWidth: '1200px',
@@ -46,15 +47,16 @@ const styles = {
   },
   cardBig: {
     backgroundColor: '#250A3C',
-    padding: '3em'
+    padding: '2em'
   },
   c2: {
     maxWidth: '1200px',
     margin: '0 auto',
+    padding: '0em'
   },
   s2: {
     paddingLeft: '1em',
-    padding: '2em',
+    padding: '3em',
     marginTop: '-5em',
     textAlign: 'left',
   },
@@ -78,7 +80,10 @@ const styles = {
   card: {
     textAlign: 'left',
     padding: '1.5em',
-    backgroundColor: '#250A3C'
+    backgroundColor: 'white'
+  },
+  background2: {
+    marginTop: '3em'
   }
 }
 

@@ -79,39 +79,39 @@ const Landing = () => {
           className={classes.c2}
           container
           direction="row"
-          justify="center"
-          alignItems="center"
+          justify="left"
+          alignItems="left"
           spacing={5}
           >
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={11} sm={11} md={5} lg={4}>
               <Card raised className={classes.card}>
                 <Typography variant='h4' color='error'>
                   Decentralization
                 </Typography>
                 <br />
-                <Typography variant='h5' color='secondary'>
+                <Typography variant='h5' color='primary'>
                   Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
                 </Typography>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={11} sm={11} md={5} lg={4}>
               <Card raised className={classes.card}>
                 <Typography variant='h4' color='error'>
                   Consensus
                 </Typography>
                 <br />
-                <Typography variant='h5' color='secondary'>
+                <Typography variant='h5' color='primary'>
                   Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
                 </Typography>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={12} md={4}>
+            <Grid item xs={11} sm={11} md={5} lg={4}>
               <Card raised className={classes.card}>
                 <Typography variant='h4' color='error'>
                   Immutability
                 </Typography>
                 <br />
-                <Typography variant='h5' color='secondary'>
+                <Typography variant='h5' color='primary'>
                   Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
                 </Typography>
               </Card>
