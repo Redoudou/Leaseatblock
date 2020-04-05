@@ -1,7 +1,7 @@
 import React from 'react'
 import { gql, ApolloClient } from 'apollo-boost'
 import { InMemoryCache } from 'apollo-cache-inmemory'
-import { HttpLink } from 'apollo-link-http'
+import { HttpLink, createHttpLink } from 'apollo-link-http'
 
 import { useQuery, ApolloProvider } from '@apollo/react-hooks'
 import './App.css'
@@ -9,9 +9,13 @@ import './App.css'
 
 import Layout from './layout/Layout'
 
+const link = createHttpLink({
+  uri: '/graphql',
+  credentials: 'same-origin'
+})
+
 const client = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
-  link: new HttpLink(),
+  link,
   cache: new InMemoryCache()
 })
 
