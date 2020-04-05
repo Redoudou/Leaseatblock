@@ -25,7 +25,7 @@ const styles = {
     minHeight: '.3em',
     maxWidth: '100%',
     marginBottom: '1em',
-    marginLeft: '0rem'
+    marginLeft: '.5rem'
   },
   title1: {
     paddingLeft: '.4em'
@@ -52,13 +52,14 @@ const styles = {
   c2: {
     maxWidth: '1200px',
     margin: '0 auto',
-    padding: '0em'
+    padding: '0em',
+
   },
   s2: {
     paddingLeft: '1em',
     padding: '3em',
     marginTop: '-5em',
-    textAlign: 'left',
+    textAlign: 'left'
   },
   orange: {
     backgroundColor: '#E86D48',
@@ -84,7 +85,18 @@ const styles = {
   },
   background2: {
     marginTop: '3em'
-  }
+  },
+  s3: {
+    padding: '5em',
+    marginTop: '-5em',
+    marginBottom: '-5em',
+    textAlign: 'left'
+  },
+  c3: {
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '5em'
+  },
 }
 
 export default styles
