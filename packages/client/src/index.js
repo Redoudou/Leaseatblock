@@ -1,25 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import { ethers } from 'ethers'
-
-import './index.css';
-import App from './views/App';
-import * as serviceWorker from './serviceWorker';
-
-// You should replace this uri with your own and put it into a .env file
-const client = new ApolloClient({
-  uri: 'https://api.thegraph.com/subgraphs/name/paulrberg/create-eth-app',
-});
-
+import './index.css'
+import App from './views/App'
+import * as serviceWorker from './serviceWorker'
 
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-      <App />
-  </ApolloProvider>
+  <App />
 ,
   document.getElementById('root')
 );

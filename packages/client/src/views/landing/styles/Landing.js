@@ -37,6 +37,10 @@ const styles = {
     marginLeft: '.7em',
     backgroundColor: '#E86D48',
   },
+  button2: {
+    marginTop: '2em',
+    marginLeft: '.7em',
+  },
   buttonT: {
     color: 'white',
     fontSize: '120%'

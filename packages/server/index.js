@@ -1,14 +1,26 @@
 const { ApolloServer, gql } = require('apollo-server')
 
+const {  demoReg,
+          demoTenant,
+          demoLandlord,
+          demoUnits } = require('./demoData')
+
 const typeDefs = gql`
 
+  type User {
+    id: ID!
+    role: [String]
+  }
+
   type Reg {
+    user: User
     nameFirst: String
     nameLast: String
     kaleidoAuth: String
   }
 
   type Tenant {
+    user: User
     nameFirst: String
     nameLast: String
     kaleidoAuth: String
@@ -16,6 +28,7 @@ const typeDefs = gql`
   }
 
   type Landlord {
+    user: User
     nameFirst: String
     nameLast: String
     kaleidoAuth: String
@@ -33,60 +46,60 @@ const typeDefs = gql`
   }
 
   type Query {
-    listings: [Unit]
+    allUsers: [User]
     allLandlords: [Landlord]
     allReg: [Reg]
     allUnits: [Unit]
   }
 `
-
-const demoReg = [
-  {
-    nameFirst: 'Zachary',
-    nameLast: 'Thielemann',
-    kaleidoAuth: 'u0hxptj1ec:yDWjiMnSK-3uo80xJT3lqTso4digUBF8WYWKxgMRqXY'
-  }
-]
-
-const demoTenant = [
-  {
-    nameFirst: 'Sam',
-    nameLast: 'Leasey',
-    kaleidoAuth: 'u0l3mvhe63:jin0rgUmKtWtxGGd1KXiIYOMI7SD--xfcKdC99Z3v4M'
-  }
-]
-
-const demoLandlord = [
-  {
-    nameFirst: 'Rich',
-    nameLast: 'Landy',
-    kaleidoAuth: 'u0kgzv0s21:hP_1iJG-_JROy_PElighBHhA8NtP_cjsSWaOdsb9Y9s',
-    units: demoUnits
-  }
-]
-
-const demoUnits = [
-  {
-    address: '1200 St. Bernard',
-    bed: '2',
-    bath: '1.5',
-    rentUSD: '500',
-    owner: demoLandlord,
-    applicants: demoTenant,
-    tenant: demoTenant[0],
-  }
-]
-
+const generateUserModel = ({ user }) => ({
+  getAll: () => { 
+    if(!user || !user.roles.includes('regulator')) return null
+    return fetch('http://localhost:4000/users')
+  },
+  getById: (id) => {    
+    if(!user.id === id) return null
+    return fetch(`http://localhost:4000/user/${id}`)
+  },
+})
 
 const resolvers = {
   Query: {
+    allUsers: (context) => {
+      if (!context.user || !context.user.roles.includes('regulator')) return null
+      return context.models.User.getAll()
+    },
     allLandlords: () => demoLandlord,
     allReg: () => demoReg,
-    allUnits: () => demoUnits
+    allUnits: () => demoUnits,
   }
 }
 
-const server = new ApolloServer({typeDefs, resolvers})
+const server = new ApolloServer({
+  typeDefs, 
+  resolvers,
+  context: ({ req }) => {
+    // Note! This example uses the `req` object to access headers,
+    // but the arguments received by `context` vary by integration.
+    // This means they will vary for Express, Koa, Lambda, etc.!
+    //
+    // To find out the correct arguments for a specific integration,
+    // see the `context` option in the API reference for `apollo-server`:
+    // https://www.apollographql.com/docs/apollo-server/api/apollo-server/
+ 
+    // Get the user token from the headers.
+    const token = req.headers.authorization || '';
+ 
+    // try to retrieve a user with the token
+    const user = getUser(token);
+    if (!user) throw new AuthenticationError('you must be logged in'); 
+
+    // add the user to the context
+    return { user, models: {
+      User: generateUserModel({ user })
+    } };
+  },
+})
 
 server.listen().then(({ url }) => {
   console.log(`Server ready at ${url}`)

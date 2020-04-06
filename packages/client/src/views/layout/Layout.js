@@ -36,6 +36,7 @@ const Layout = () => {
         <BrowserRouter>
           <Navigation/>
           <div className={classes.page}>
+            <Route path="/" component={ScrollToTop}/>
             <Routes/>
           </div>
           <Footer/>
@@ -43,6 +44,17 @@ const Layout = () => {
       </ThemeProvider>
     </div>
   )
+}
+
+class ScrollToTop extends React.Component {
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      window.scrollTo(0, 0)
+    }
+  }
+  render() {
+    return null
+  }
 }
 
 export default Layout

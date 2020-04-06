@@ -7,12 +7,12 @@ import {Container, Grid, Typography, Button, CircularProgress} from '@material-u
 import {makeStyles} from '@material-ui/styles'
 import {Link, Switch, BrowserRouter, Route} from 'react-router-dom'
 
-import styles from './styles/Profile'
+import styles from './styles/Dashboard'
 
 
 const useStyles = makeStyles(styles)
 
-const Profile = () => {
+const Dashboard = () => {
   const classes = useStyles()
 
   const context = useContext(FirebaseAuthContext)
@@ -22,9 +22,8 @@ const Profile = () => {
       <Typography variant='h3'>{context.userType}</Typography>
     </ProtectedScreen>
 
-    
     </div>
   )
 }
 
-export default Profile
+export default Dashboard
