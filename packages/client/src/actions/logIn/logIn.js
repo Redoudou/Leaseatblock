@@ -7,7 +7,7 @@ import Firebase from '../../firebase'
 const LogIn = () => {
   const [isLoggedIn, setLogin] = useState(false)
 
-  let provider = new Firebase.auth.GoogleAuthProvider()
+  let provider = new Firebase.auth.EmailAuthProvider()
   if (Firebase.auth.User) {
     setLogin(true)
   }
@@ -18,7 +18,7 @@ const LogIn = () => {
       return
     }
     Firebase.auth()
-    .signInWithPopup(provider)
+    .signInWithEmailAndPassword(provider)
     .then( result => {
       setLogin(true)
       console.log(isLoggedIn)

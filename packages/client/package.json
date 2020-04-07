@@ -1,10 +1,10 @@
 {
   "name": "@project/react-app",
+  "homepage": ".",
   "version": "1.0.0",
   "browserslist": {
     "production": [
       ">0.2%",
-      "nota ded",
       "not op_mini all"
     ],
     "development": [
@@ -14,30 +14,20 @@
     ]
   },
   "dependencies": {
-    "@apollo/react-hooks": "^3.1.3",
     "@material-ui/core": "^4.9.4",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.9.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "apollo-boost": "^0.4.7",
-    "apollo-cache-inmemory": "^1.6.5",
-    "apollo-client": "^2.6.8",
-    "apollo-link-http": "^1.5.16",
-    "apollo-utilities": "^1.3.3",
-    "ethers": "^4.0.43",
-    "ethers-web3-bridge": "0.0.1",
     "firebase": "^7.13.2",
-    "graphql": "^14.6.0",
     "openlaw": "^0.2.39",
     "openlaw-elements": "^1.1.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-firestore": "^1.0.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.1",
-    "web3": "^1.2.6"
+    "react-scripts": "^3.3.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^6.12.2",

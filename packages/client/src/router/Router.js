@@ -10,24 +10,28 @@ import Dashboard from '../views/dashboard/Dashboard'
 import Listing from '../views/listing/Listing'
 import ListingList from '../views/listing/ListingList'
 
+import ErrorBoundary from '../context/ErrorBoundary'
 import LogIn from '../actions/logIn/LogIn'
-
+import LogOut from '../actions/logOut/LogOut'
 
 const Routes = () => {
 
   return (
       <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route exact path='/about' component={About} />
-        <Route exact path='/faq' component={FAQ} />
+        <ErrorBoundary>
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/faq' component={FAQ} />
 
-        <Route exact path='/login' component={LogIn} />
+          <Route exact path='/login' component={LogIn} />
+          <Route exact path='/logout' component={LogOut} />
 
-        <Route exact path='/profile' component={Profile} />
-        <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/search' component={ListingList} />
-        <Route exact path='/listing/:slug' component={Listing} />
+          <Route exact path='/profile' component={Profile} />
+          <Route exact path='/dashboard' component={Dashboard} />
 
+          <Route exact path='/search' component={ListingList} />
+          <Route exact path='/listing/:slug' component={Listing} />
+        </ErrorBoundary>
       </Switch>
   )
 }

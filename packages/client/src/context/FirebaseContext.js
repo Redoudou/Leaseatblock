@@ -7,7 +7,7 @@ import {fb} from '../firebase'
 const defaultFirebaseContext = {
   authStatusReported: false,
   isUserSignedIn: false,
-  userType: null
+  userObj: null
 }
 
 export const FirebaseAuthContext = React.createContext(defaultFirebaseContext)
@@ -22,17 +22,17 @@ export class FirebaseAuthProvider extends React.Component {
     fb.auth.onAuthStateChanged(user => this.setState({
       authStatusReported: true,
       isUserSignedIn: !!user,
-      userType: user.displayName
+      userObj: user
     }))
   }
 
   render() {
     const {children} = this.props
-    const {authStatusReported, isUserSignedIn, userType } = this.state
+    const {authStatusReported, isUserSignedIn, userObj } = this.state
 
     return (
-      <FirebaseAuthContext.Provider value={{isUserSignedIn, authStatusReported, userType}}>
-        {authStatusReported && isUserSignedIn&& userType && children}
+      <FirebaseAuthContext.Provider value={{isUserSignedIn, authStatusReported, userObj}}>
+        {authStatusReported && isUserSignedIn&& userObj && children}
       </FirebaseAuthContext.Provider>
     )
   }

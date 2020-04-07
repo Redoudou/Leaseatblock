@@ -10,10 +10,16 @@ const styles = {
   },
   logo: {
   },
+  nav: {
+    justify: 'right !important'
+  },
   tabs: {
     color: '#CFEBEC',
     marginTop: '1em',
     marginLeft: '0em',
+    zIndex: '20 !important',
+    overflow: 'visible',
+    width: '300%'
   },
   toolbar: {
     color: '#373737'
@@ -24,6 +30,9 @@ const styles = {
   spacer1: {
     minWidth: '2em'
   },
+  aligner: {
+    minWidth: '3em'
+  },
   profilePic: {
     borderRadius: '50%',
     float: 'none',
@@ -31,6 +40,16 @@ const styles = {
   },
   button: {
     height: '3em',
+  },
+  button1: {
+    marginTop: '1em',
+    marginLeft: '-5em'
+  },
+  welcome: {
+    paddingTop: '1.3em',
+    marginBottom: '-8em',
+    textAlign: 'right',
+    textDecoration: 'none'
   }
 
 }

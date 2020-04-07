@@ -5,7 +5,7 @@ import {FirebaseAuthProvider} from '../context/FirebaseContext'
 import './App.css'
 
 import Layout from './layout/Layout'
-
+import ErrorBoundary from '../context/ErrorBoundary'
 import Firebase from '../firebase'
 
 
@@ -14,8 +14,9 @@ function App() {
     <div className="App">
       <FirestoreProvider firebase={Firebase}>
         <FirebaseAuthProvider>
-          <Layout />
-
+          <ErrorBoundary>
+            <Layout />
+          </ErrorBoundary>
         </FirebaseAuthProvider>
       </FirestoreProvider>
     </div>

@@ -13,6 +13,7 @@ const useStyles = makeStyles(styles)
 
 const AltTab = withStyles(() => ({
   root: {
+    paddingRight: '1em',
     textTransform: 'none',
     fontSize: '1.4em',
     minWidth: 80,
@@ -53,6 +54,7 @@ const Navigation = () => {
 
   const context = useContext(FirebaseAuthContext)
   const [open, setOpen] = useState(false)
+  const [signOut, setOut] = useState(false)
 
   const handleClose = () => {
     setOpen(false)
@@ -61,7 +63,7 @@ const Navigation = () => {
     setOpen(true)
   }
 
-  if (context.isUserSignedIn.userType) {
+  if (context.isUserSignedIn) {
     return (
       <div className={classes.root}>
         <Route render={({ location }) => (
@@ -69,25 +71,39 @@ const Navigation = () => {
             <Toolbar>
               <Grid 
                 container
-                justify="center"
+                justify="right"
                 alignItems="center"
                 >
-                <Grid item xs={10} sm={10} md={5} lg={5} xl={5}>
+                <Grid item xs={12} sm={12} md={8} lg={8} xl={5}>
                   <Title prop={location.pathname} />
                 </Grid>
-                <Grid item>
-                  <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
-                    <AltTab label='About' value='/about' component={Link} to={'/about'} />
-                    <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
-                    <AltTab label='Dashboard' value='/dashboard' component={Link} to={'/dashboard'} />
-                  </Tabs>
-                  <img 
-                    className={styles.profilePic} 
-                    src={context.isUserSignedIn.userInfo.photoURL} 
-                    alt={context.isUserSignedIn.userType} 
-                    width="100px" 
-                    height="100px" 
-                  />
+                <Grid container direction='row-reverse'>
+                  <Grid item xs={3}>
+                    <div className={classes.button1}>
+                      <Link to='/logout' style={{textDecoration: 'none'}}>
+                        <Button variant='outlined' size='small' color='secondary'>
+                            Log Out
+                        </Button>
+                      </Link>
+                    </div>
+                  </Grid>
+                  
+                  <Grid className={classes.welcome} item xs={8}>
+                    <Link to='/dashboard' style={{textDecoration: 'none'}}>
+                      <Typography color='error' variant='body2'>
+                          Hello, {context.userObj.displayName}
+                        </Typography>
+                    </Link>
+                  </Grid>
+
+                  <Grid item xs={6} sm={6} md={12}>
+                    <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
+                        <AltTab label='About' value='/about' component={Link} to={'/about'} />
+                        <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
+                        <div className={classes.alinger}/>
+                        <AltTab label='Dashboard' value='/dashboard' component={Link} to={'/dashboard'} />
+                      </Tabs>
+                  </Grid>
                 </Grid>
               </Grid>
             </Toolbar>

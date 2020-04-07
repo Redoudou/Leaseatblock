@@ -1,17 +1,38 @@
-import React from 'react'
-import {Typography, Grid, Button, Container, makeStyles} from '@material-ui/core'
+import React, {useState, useEffect} from "react"
 
-const begin = () => {
-  const token = new React.useQuery()
-  return (token)
-}
+import {Redirect, withRouter, Route} from 'react-router-dom'
+import {CircularProgress} from '@material-ui/core'
+import Firebase from '../../firebase'
 
 const LogOut = () => {
+  const [isLoggedIn, setLogin] = useState(true)
 
-  React.useEffect(begin())
+  let provider = new Firebase.auth.GoogleAuthProvider()
+  if (Firebase.auth.User) {
+    setLogin(true)
+  }
+
+  
+  useEffect(() => {
+    if (isLoggedIn) {
+      return
+    }
+    Firebase.auth().signOut()
+    .then( () => {
+      setLogin(false)
+    }).catch((error) => {
+      setLogin(true)
+    })
+  })
+
+  if (isLoggedIn) {
+    return (
+      <CircularProgress style={{marginTop: '20em'}}/>
+    )
+  }
+  return(
+    <Redirect to='/'/>
+  )
 }
 
-
-
-
-export default LogOut
+export default withRouter(LogOut)
