@@ -28,11 +28,11 @@ export class FirebaseAuthProvider extends React.Component {
 
   render() {
     const {children} = this.props
-    const {authStatusReported, isUserSignedIn, userObj } = this.state
+    const { authStatusReported, isUserSignedIn, userObj } = this.state
 
     return (
       <FirebaseAuthContext.Provider value={{isUserSignedIn, authStatusReported, userObj}}>
-        {authStatusReported && isUserSignedIn&& userObj && children}
+        {children}
       </FirebaseAuthContext.Provider>
     )
   }
@@ -48,7 +48,7 @@ class ProtectedScreen extends React.Component {
                       if (isUserSignedIn) {
                           return children
                       }
-                      return <Redirect push to="/login" />;
+                      return <Redirect to="/login" />;
                   }
               }
           </FirebaseAuthContext.Consumer>

@@ -33,7 +33,7 @@ const Landing = () => {
               Learn More
             </Typography>
           </Button>
-          <Button className={classes.button2} variant='contained' color='primary' href='/login'>Sign Up</Button>
+          <Button className={classes.button2} variant='contained' color='primary' href='/signup'>Sign Up</Button>
 
         </Grid>
       </Grid>

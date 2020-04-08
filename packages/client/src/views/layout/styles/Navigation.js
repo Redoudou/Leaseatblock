@@ -19,7 +19,7 @@ const styles = {
     marginLeft: '0em',
     zIndex: '20 !important',
     overflow: 'visible',
-    width: '300%'
+    width: ''
   },
   toolbar: {
     color: '#373737'
@@ -45,9 +45,12 @@ const styles = {
     marginTop: '1em',
     marginLeft: '-5em'
   },
+  buttonD: {
+    opacity: '0'
+  },
   welcome: {
     paddingTop: '1.3em',
-    marginBottom: '-8em',
+    marginBottom: '0em',
     textAlign: 'right',
     textDecoration: 'none'
   }

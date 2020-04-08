@@ -14,9 +14,7 @@ function App() {
     <div className="App">
       <FirestoreProvider firebase={Firebase}>
         <FirebaseAuthProvider>
-          <ErrorBoundary>
-            <Layout />
-          </ErrorBoundary>
+          <Layout />
         </FirebaseAuthProvider>
       </FirestoreProvider>
     </div>

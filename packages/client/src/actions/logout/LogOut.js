@@ -8,14 +8,12 @@ const LogOut = () => {
   const [isLoggedIn, setLogin] = useState(true)
 
   let provider = new Firebase.auth.GoogleAuthProvider()
-  if (Firebase.auth.User) {
-    setLogin(true)
-  }
+
 
   
   useEffect(() => {
-    if (isLoggedIn) {
-      return
+    if (Firebase.auth.User) {
+      setLogin(true)
     }
     Firebase.auth().signOut()
     .then( () => {
@@ -31,7 +29,7 @@ const LogOut = () => {
     )
   }
   return(
-    <Redirect to='/'/>
+    <Redirect push to='/' />
   )
 }
 

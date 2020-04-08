@@ -12,6 +12,18 @@ var firebaseConfig = {
 
 Firebase.initializeApp(firebaseConfig)
 
+const db = Firebase.firestore()
+
+export const addUser = (data) => {
+  return db.collection('users').doc('config').add(data)
+}
+export const isUser = () => {
+  if (db.collection('users').doc('config').get !== null) {
+    return true
+  }
+  return false
+}
+
 export const fb = {
   auth: Firebase.auth()
 }

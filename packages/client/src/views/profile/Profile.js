@@ -19,7 +19,7 @@ const Profile = () => {
   return (
     <div className={classes.root}>
     <ProtectedScreen>
-      <Typography variant='h3'>{context.userType}</Typography>
+      <Typography variant='h3'>{context.userObj}</Typography>
     </ProtectedScreen>
 
     

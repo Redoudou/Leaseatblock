@@ -13,25 +13,27 @@ import ListingList from '../views/listing/ListingList'
 import ErrorBoundary from '../context/ErrorBoundary'
 import LogIn from '../actions/logIn/LogIn'
 import LogOut from '../actions/logOut/LogOut'
+import SignUp from '../actions/signUp/SignUp'
+import OnBoard from '../actions/signUp/OnBoard'
 
 const Routes = () => {
 
   return (
       <Switch>
-        <ErrorBoundary>
-          <Route exact path='/' component={Landing} />
-          <Route exact path='/about' component={About} />
-          <Route exact path='/faq' component={FAQ} />
+        <Route exact path='/' component={Landing} />
+        <Route exact path='/about' component={About} />
+        <Route exact path='/faq' component={FAQ} />
 
-          <Route exact path='/login' component={LogIn} />
-          <Route exact path='/logout' component={LogOut} />
+        <Route exact path='/login' component={LogIn} />
+        <Route exact path='/logout' component={LogOut} />
+        <Route exact path='/signup' component={SignUp} />
+        <Route exact path='/newuser' component={OnBoard} />
+        
+        <Route exact path='/profile' component={Profile} />
+        <Route exact path='/dashboard' component={Dashboard} />
 
-          <Route exact path='/profile' component={Profile} />
-          <Route exact path='/dashboard' component={Dashboard} />
-
-          <Route exact path='/search' component={ListingList} />
-          <Route exact path='/listing/:slug' component={Listing} />
-        </ErrorBoundary>
+        <Route exact path='/search' component={ListingList} />
+        <Route exact path='/listing/:slug' component={Listing} />
       </Switch>
   )
 }

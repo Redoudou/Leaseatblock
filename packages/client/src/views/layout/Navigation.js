@@ -91,7 +91,7 @@ const Navigation = () => {
                   <Grid className={classes.welcome} item xs={8}>
                     <Link to='/dashboard' style={{textDecoration: 'none'}}>
                       <Typography color='error' variant='body2'>
-                          Hello, {context.userObj.displayName}
+                          Hello, {context.userObj.email}
                         </Typography>
                     </Link>
                   </Grid>
@@ -117,16 +117,21 @@ const Navigation = () => {
       <Route render={({ location }) => (
         <AppBar className={classes.toobar} position='fixed' color='primary'>
           <Toolbar>
-            <Grid container>
-              <Grid item xs={10} sm={9} md={9} lg={9} xl={9}>
+            <Grid container justify='left' alignItems='center' direction='row'>
+              <Grid item sm={6} md={7} lg={8}>
                 <Title prop={location.pathname} />
               </Grid>
-              <Grid item>
-                <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
-                  <AltTab label='About' value='/about' component={Link} to={'/about'} />
-                  <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
-                  <Button className={classes.button} variant='contained' color='secondary' href='/login'>Sign Up</Button>
-                </Tabs>
+              <Grid item container direction='row'>
+                <Grid item>
+                  <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
+                    <AltTab label='About' value='/about' component={Link} to={'/about'} />
+                    <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
+                    <AltTab label='Login' value='/login' component={Link} to={'/login'} />
+                  </Tabs>
+                </Grid>
+                <Grid item>
+                  <Button className={classes.button} variant='contained' color='secondary' href='/signup'>Register</Button>
+                </Grid>
               </Grid>
             </Grid>
           </Toolbar>

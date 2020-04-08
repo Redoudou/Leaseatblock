@@ -7,9 +7,7 @@ import * as serviceWorker from './serviceWorker'
 
 
 ReactDOM.render(
-  <ErrorBoundary>
-    <App />
-  </ErrorBoundary>
+  <App />
 ,
   document.getElementById('root')
 );
