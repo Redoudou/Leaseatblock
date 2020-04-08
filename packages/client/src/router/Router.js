@@ -5,16 +5,19 @@ import Landing from '../views/landing/Landing'
 import About from '../views/about/About'
 import FAQ from '../views/faq/FAQ'
 
-import Profile from '../views/profile/Profile'
-import Dashboard from '../views/dashboard/Dashboard'
+import Search from '../views/search/Search'
+import Account from '../views/account/Account'
+
 import Listing from '../views/listing/Listing'
-import ListingList from '../views/listing/ListingList'
+import Lease from '../views/lease/Lease'
 
 import ErrorBoundary from '../context/ErrorBoundary'
 import LogIn from '../actions/logIn/LogIn'
 import LogOut from '../actions/logOut/LogOut'
 import SignUp from '../actions/signUp/SignUp'
 import OnBoard from '../actions/signUp/OnBoard'
+import CreateListing from '../actions/createListing/CreateListing'
+
 
 const Routes = () => {
 
@@ -29,11 +32,11 @@ const Routes = () => {
         <Route exact path='/signup' component={SignUp} />
         <Route exact path='/newuser' component={OnBoard} />
         
-        <Route exact path='/profile' component={Profile} />
-        <Route exact path='/dashboard' component={Dashboard} />
-
-        <Route exact path='/search' component={ListingList} />
-        <Route exact path='/listing/:slug' component={Listing} />
+        <Route exact path='/search' component={Search} />
+        <Route exact path='/account' component={Account} />
+        <Route exact path='/createlisting' component={CreateListing} />
+        <Route exact path='/search/:ownerID/:listID' component={Listing} />
+        <Route exact path='/search/:listID/:leaseID' component={Lease} />
       </Switch>
   )
 }

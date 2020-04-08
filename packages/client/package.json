@@ -20,6 +20,8 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "babel-eslint": "10.1.0",
+    "cross-fetch": "^3.0.4",
     "firebase": "^7.13.2",
     "openlaw": "^0.2.39",
     "openlaw-elements": "^1.1.2",
@@ -27,8 +29,7 @@
     "react-dom": "16.12.0",
     "react-firestore": "^1.0.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.1",
-    "babel-eslint": "10.1.0"
+    "react-scripts": "^3.3.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^6.12.2",

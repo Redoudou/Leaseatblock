@@ -2,12 +2,12 @@
 import React from 'react'
 
 import {Redirect, withRouter} from 'react-router-dom'
-import {fb} from '../firebase'
+import {fb, isUser} from '../firebase'
 
 const defaultFirebaseContext = {
   authStatusReported: false,
   isUserSignedIn: false,
-  userObj: false
+  userID: null
 }
 
 export const FirebaseAuthContext = React.createContext(defaultFirebaseContext)
@@ -22,15 +22,16 @@ export class FirebaseAuthProvider extends React.Component {
     fb.auth.onAuthStateChanged(user => this.setState({
       authStatusReported: true,
       isUserSignedIn: !!user,
+      userID: user.uid
     }))
   }
 
   render() {
-    const {children} = this.props
-    const { authStatusReported, isUserSignedIn, userObj } = this.state
+    const { children } = this.props
+    const { authStatusReported, isUserSignedIn, userID } = this.state
 
     return (
-      <FirebaseAuthContext.Provider value={{isUserSignedIn, authStatusReported, userObj}}>
+      <FirebaseAuthContext.Provider value={{isUserSignedIn, authStatusReported, userID}}>
         {children}
       </FirebaseAuthContext.Provider>
     )
@@ -38,21 +39,22 @@ export class FirebaseAuthProvider extends React.Component {
 }
 
 class ProtectedScreen extends React.Component {
+  
   render() {
       const {children} = this.props;
       return (
           <FirebaseAuthContext.Consumer>
               {
-                  ({isUserSignedIn, userObj}) => {
-                      if (isUserSignedIn) {
-                        return children
+                  ({isUserSignedIn}) => {
+
+
+                      if (!isUserSignedIn) {
+                        return <Redirect to="/login" />
                       }
-                      if (!userObj && isUserSignedIn) {
-                        return <Redirect to='/newuser' />
-                      }
-  
-                      return <Redirect to="/login" />
-                      
+
+                      return children
+
+
                   }
               }
           </FirebaseAuthContext.Consumer>

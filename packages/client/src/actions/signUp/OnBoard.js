@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from "react"
 
-import {Redirect, withRouter, Route} from 'react-router-dom'
+import {Redirect, withRouter, Route, Link} from 'react-router-dom'
 import {CircularProgress, Button, TextField, Typography, Grid, Select, FormHelperText, FormControl, MenuItem} from '@material-ui/core'
 
 import {makeStyles } from '@material-ui/styles'
@@ -8,12 +8,16 @@ import {makeStyles } from '@material-ui/styles'
 import {FirebaseAuthContext, ProtectedScreen} from '../../context/FirebaseContext'
 import Firebase, {addUser, isUser} from '../../firebase'
 
-import styles from './styles/SignUp'
+import styles from './styles/OnBoard'
 
 const useStyles = makeStyles(styles)
 
 const ToLogin = () => {
   return <Redirect to='/login'/>
+}
+
+const ToDashboard = () => {
+  return <Redirect to='/dashboard'/>
 }
 
 const OnBoard = () => {
@@ -27,30 +31,25 @@ const OnBoard = () => {
   const [role, setRole] = useState('tenant') 
 
   useEffect(() => {
-    if (isUser()) {
-      setOn(true)
-    }
     if (!context.isUserSignedIn) {
       ToLogin()
+    }
+    if (isUser(context.userID)) {
+      setOn(true)
     }
   })
 
   const appendUser = () => {
     let data = {
-      created: Firebase.firestore.FieldValue.serverTimestamp(),
-      email: context.userObj.email,
       fullName: name,
       phoneNumber: phone,
       userType: role,
+      kaleido: '',
+      isConfirmed: false
     }
-    addUser(data)
-    .then(() => {
-      setOn(true)
-      setError(null)
-    }).catch( error => {
-      setOn(false)
-      setError(error)
-    })
+    addUser(context.userID, data)
+
+    setOn(true)
   }
 
   const handleName = (event) => {
@@ -72,91 +71,104 @@ const OnBoard = () => {
   if (isOnBoarded === false && error !== null) {
     return (
       <div className={classes.root}>
-          <Grid container alignItems='center' justify='left' direction='column'>
-            <Grid item xs={12}>
-              <Typography variant='h3' color='primary'>Finish your Profile...</Typography>
-              <br />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <FormControl>
-                <TextField
-                  rowsMax="6"
-                  value={name}
-                  onChange={handleName}
-                />
-                <FormHelperText>Full Name</FormHelperText>
-              </FormControl>
-              <br/>
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <FormControl>
-                <Select
-                  value={role}
-                  onChange={handleRole}
-                >
-                  <MenuItem value={'tenant'}>Tenant</MenuItem>
-                  <MenuItem value={'landlord'}>Landlord</MenuItem>
-                  <MenuItem value={'regulator'}>Regulator</MenuItem>
-                </Select>
-                <FormHelperText>Select your role</FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <Button onClick={appendUser}>Continue</Button>
-            </Grid>        
-            <Typography color='error'>{error.message}</Typography>
+        <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
+          <Grid item>
+            <Typography variant='h3' color='primary'>Finish your profile</Typography>
+            <Typography color='error'>{error.message}</Typography>     
+          </Grid>    
+          <Grid item>
+            <FormControl>
+              <TextField
+                id="standard-full-width"
+                fullWidth
+                value={name}
+                placeholder="Full Name"
+                onChange={handleName}
+              />
+            </FormControl>
           </Grid>
+          <Grid item>
+            <FormControl>
+              <TextField
+                fullWidth
+                value={phone}
+                placeholder="Phone"
+                onChange={handlePhone}
+              />
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <FormControl>
+              <Select
+                value={role}
+                onChange={handleRole}
+              >
+                <MenuItem value={'tenant'}>Tenant</MenuItem>
+                <MenuItem value={'landlord'}>Landlord</MenuItem>
+                <MenuItem value={'regulator'}>Regulator</MenuItem>
+              </Select>
+              <FormHelperText>Select your role</FormHelperText>
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <Button className={classes.button} variant='contained' color='primary' onClick={appendUser}>Continue</Button>
+            <Link to='/logout'>
+              <Button className={classes.button} variant='outline' color='primary'>Log Out</Button>
+            </Link>
+          </Grid>
+        </Grid>
       </div>
     )
   } 
   
   return (
     <div className={classes.root}>
-    <Grid container alignItems='center' justify='left' direction='row'>
-      <Grid item xs={12}>
-        <Typography variant='h3' color='primary'>Finish your Profile...</Typography>
-        <br/>
+      <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
+        <Grid item>
+          <Typography variant='h3' color='primary'>Finish your profile</Typography>
+        </Grid>    
+        <Grid item>
+          <FormControl>
+            <TextField
+              id="standard-full-width"
+              fullWidth
+              value={name}
+              placeholder="Full Name"
+              onChange={handleName}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <FormControl>
+            <TextField
+              fullWidth
+              value={phone}
+              placeholder="Phone"
+              onChange={handlePhone}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <FormControl>
+            <Select
+              value={role}
+              onChange={handleRole}
+            >
+              <MenuItem value={'tenant'}>Tenant</MenuItem>
+              <MenuItem value={'landlord'}>Landlord</MenuItem>
+              <MenuItem value={'regulator'}>Regulator</MenuItem>
+            </Select>
+            <FormHelperText>Select your role</FormHelperText>
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <Button className={classes.button} variant='contained' color='primary' onClick={appendUser}>Continue</Button>
+          <Link to='/logout'>
+            <Button className={classes.button} variant='outline' color='primary'>Log Out</Button>
+          </Link>
+        </Grid>
       </Grid>
-      <Grid item xs={12} sm={12}>
-        <FormControl>
-          <TextField
-            rowsMax="6"
-            value={name}
-            onChange={handleName}
-          />
-          <FormHelperText>Full Name</FormHelperText>
-        </FormControl>
-        <br/>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <FormControl>
-          <TextField
-            rowsMax="6"
-            value={phone}
-            onChange={handlePhone}
-          />
-          <FormHelperText>Phone Number</FormHelperText>
-        </FormControl>
-        <br/>
-      </Grid>
-      <Grid item xs={12} sm={12}>
-        <FormControl>
-          <Select
-            value={role}
-            onChange={handleRole}
-          >
-            <MenuItem value={'tenant'}>Tenant</MenuItem>
-            <MenuItem value={'landlord'}>Landlord</MenuItem>
-            <MenuItem value={'regulator'}>Regulator</MenuItem>
-          </Select>
-          <FormHelperText>Select your role</FormHelperText>
-        </FormControl>
-      </Grid>
-      <Grid item xs={12}>
-        <Button onClick={appendUser}>Continue</Button>
-      </Grid>          
-    </Grid>
-</div>
+    </div>
   )
   
 }

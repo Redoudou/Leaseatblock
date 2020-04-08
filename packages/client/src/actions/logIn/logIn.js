@@ -13,6 +13,11 @@ import styles from './styles'
 
 const useStyles = makeStyles(styles)
 
+const ToDashboard = () => {
+  return (
+    <Redirect to='/dashboard' />
+  )
+}
 
 const LogIn = () => {
   const classes = useStyles()
@@ -26,7 +31,9 @@ const LogIn = () => {
 
 
   useEffect(() => {
-    setLogin(context.isUserSignedIn)
+    if (context.isUserSignedIn) {
+      setLogin(true)
+    }
   })
 
   const handleLogin = () => {
@@ -122,7 +129,6 @@ const LogIn = () => {
               placeholder="Password"
               onChange={handlePass}
             />
-            <FormHelperText>Password must be larger than 6 characters</FormHelperText>
           </FormControl>
         </Grid>
           <Grid item>

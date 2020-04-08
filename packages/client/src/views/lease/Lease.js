@@ -6,21 +6,21 @@ import {FirestoreDocument} from 'react-firestore'
 
 import Error from '../misc/Error'
 
-import styles from './styles/Listing'
+import styles from './styles/Lease'
 
 const useStyles = makeStyles(styles)
 
 
 export const Listing = () => {
   const classes = useStyles()
-  const {ownerID, listID} = useParams()
+  const {listID, leaseID} = useParams()
 
   return (
     <div className={classes.root} >
       <Grid container>
         <Grid item>
           <FirestoreDocument
-            path={`listing/${ownerID}/${listID}`}>
+            path={`lease/${leaseID}`}>
               {({error, isLoading, data}) => {
                 if (error) {
                   return error.message

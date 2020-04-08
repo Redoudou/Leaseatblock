@@ -40,12 +40,7 @@ const Layout = () => {
               <Route path="/" component={ScrollToTop}/>
               <Routes/>
             </div>
-            <div className={classes.cont}>
-              <img className={classes.image} src='	
-  https://storage.cloud.google.com/leaseotb-images/cubediamond.png'></img>
-            </div>
             <Footer/>
-
           </div>
         </BrowserRouter>
       </ThemeProvider>

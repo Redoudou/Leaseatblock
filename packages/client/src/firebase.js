@@ -2,6 +2,7 @@
 import * as Firebase from "firebase/app"
 import 'firebase/auth'
 import 'firebase/firestore'
+import fetch from 'cross-fetch'
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_apiKey,
@@ -14,14 +15,29 @@ Firebase.initializeApp(firebaseConfig)
 
 const db = Firebase.firestore()
 
-export const addUser = (data) => {
-  return db.collection('users').doc('config').add(data)
+export const addUser = (user, data) => {
+  db.collection('users').doc(user).set(data)
 }
-export const isUser = () => {
-  if (db.collection('users').doc().get !== null) {
-    return true
+
+export const isUser = (userID) => {
+  if (userID) {
+    let ref = db.collection('users')
+
+    let getDoc = ref.doc(userID)
+    getDoc.get().then((doc)=> {
+      if (!doc.exists) {
+        return false
+      }
+      return true
+    }).catch(error => {
+      return false
+    })
   }
   return false
+}
+
+export const addListing = (data) => {
+  db.collection('listings').doc(data.owner).set(data)
 }
 
 export const fb = {

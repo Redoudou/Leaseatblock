@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {Typography, Grid, Container, Card, Button} from '@material-ui/core'
-
+import fetch from 'cross-fetch'
 import {makeStyles} from '@material-ui/core/styles'
 
 import styles from './styles/Landing'
@@ -28,8 +28,8 @@ const Landing = () => {
           <Typography variant='h5' color='primary' className={classes.title1}>
             Helping New York find and keep rent-stablized apartments
           </Typography>
-          <Button className={classes.button1} variant='contained' color='primary' href='/about'>
-            <Typography variant='body1' color='primary' className={classes.buttonT}>
+          <Button className={classes.button1} variant='contained' color='primary' href='/about' >
+            <Typography variant='body1' color='primary' className={classes.buttonT} >
               Learn More
             </Typography>
           </Button>

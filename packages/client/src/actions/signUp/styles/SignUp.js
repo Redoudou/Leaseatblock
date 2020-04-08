@@ -1,6 +1,6 @@
 const styles = {
   root: {
-    marginTop: '10em',
+    marginTop: '13em',
     marginLeft: '20%',
     maxWidth: '600px',
     alignItems: 'center',
