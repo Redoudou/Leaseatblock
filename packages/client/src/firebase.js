@@ -18,7 +18,7 @@ export const addUser = (data) => {
   return db.collection('users').doc('config').add(data)
 }
 export const isUser = () => {
-  if (db.collection('users').doc('config').get !== null) {
+  if (db.collection('users').doc().get !== null) {
     return true
   }
   return false

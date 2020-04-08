@@ -42,8 +42,8 @@ const styles = {
     height: '3em',
   },
   button1: {
-    marginTop: '1em',
-    marginLeft: '-5em'
+    paddingLeft: '2em',
+    paddingTop: '1em'
   },
   buttonD: {
     opacity: '0'

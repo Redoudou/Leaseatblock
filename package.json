@@ -10,10 +10,10 @@
   ],
   "private": true,
   "scripts": {
-    "react-app:build": "yarn workspace @project/react-app build",
-    "react-app:eject": "yarn workspace @project/react-app eject",
-    "react-app:start": "yarn workspace @project/react-app start",
-    "react-app:test": "yarn workspace @project/react-app test",
+    "client:build": "yarn workspace @project/client build",
+    "client:eject": "yarn workspace @project/client eject",
+    "client:start": "yarn workspace @project/client start",
+    "client:test": "yarn workspace @project/client test",
     "subgraph:auth": "yarn workspace @project/subgraph auth",
     "subgraph:codegen": "yarn workspace @project/subgraph codegen",
     "subgraph:build": "yarn workspace @project/subgraph build",
@@ -23,7 +23,7 @@
     "packages": [
       "packages/*"
     ],
-    "nohoist": [
+    "client": [
       "**/@graphprotocol/graph-ts",
       "**/@graphprotocol/graph-ts/**"
     ]

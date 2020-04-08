@@ -34,12 +34,19 @@ const Layout = () => {
     <div className={classes.root}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Navigation/>
-          <div className={classes.page}>
-            <Route path="/" component={ScrollToTop}/>
-            <Routes/>
+          <div className={classes.secondC}>
+            <Navigation/>
+            <div className={classes.page}>
+              <Route path="/" component={ScrollToTop}/>
+              <Routes/>
+            </div>
+            <div className={classes.cont}>
+              <img className={classes.image} src='	
+  https://storage.cloud.google.com/leaseotb-images/cubediamond.png'></img>
+            </div>
+            <Footer/>
+
           </div>
-          <Footer/>
         </BrowserRouter>
       </ThemeProvider>
     </div>

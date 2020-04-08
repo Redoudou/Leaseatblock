@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from "react"
 
-import {Redirect, withRouter, Route} from 'react-router-dom'
+import {Redirect, withRouter, Route, Link} from 'react-router-dom'
 import {CircularProgress, Button, TextField, Typography, Grid, Select, FormHelperText, FormControl, MenuItem} from '@material-ui/core'
 
 import {makeStyles } from '@material-ui/styles'
@@ -60,72 +60,78 @@ const SignUp = () => {
   if (isLoggedIn === false && error !== null) {
     return (
       <div className={classes.root}>
-        <Grid container alignItems='center' justify='left' direction='row'>
-          <Grid item xs={12}>
-            <Typography variant='h3' color='primary'>Join the Lease on the Bloc Demo!</Typography>
-          </Grid>
-          <br/>
-          <Grid item xs={12} sm={12}>
-            <FormControl>
-              <TextField
-                rowsMax="6"
-                value={email}
-                onChange={handleEmail}
-              />
-              <FormHelperText>Email</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={12}>
-            <FormControl>
-              <TextField
-                rowsMax="6"
-                value={password}
-                onChange={handlePass}
-              />
-              <FormHelperText>Password</FormHelperText>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <br/>
-            <Button variant='contained' color='primary' onClick={handleSignup}>Sign Up</Button>
-          </Grid>   
+      <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
+        <Grid item>
+          <Typography variant='h3' color='primary'>Register Now!</Typography>
           <Typography color='error'>{error.message}</Typography>     
+        </Grid>    
+        <Grid item>
+          <FormControl>
+            <TextField
+              id="standard-full-width"
+              fullWidth
+              value={email}
+              placeholder="Email"
+              onChange={handleEmail}
+            />
+          </FormControl>
         </Grid>
-      </div>
+        <Grid item>
+          <FormControl>
+            <TextField
+              fullWidth
+              value={password}
+              placeholder="Password"
+              onChange={handlePass}
+            />
+            <FormHelperText>Password must be larger than 6 characters</FormHelperText>
+          </FormControl>
+        </Grid>
+          <Grid item>
+            <Button className={classes.button} variant='contained' color='primary' onClick={handleSignup}>Sign Up</Button>
+            <Link to='/login'>
+              <Button className={classes.button} variant='outline' color='primary'>Log In</Button>
+            </Link>
+          </Grid>
+      </Grid>
+    </div>
     )
   } 
 
   return (
     <div className={classes.root}>
-      <Grid container alignItems='center' justify='left' direction='row'>
-        <Grid item xs={12}>
-          <Typography variant='h3' color='primary'>Join the Lease on the Bloc Demo!</Typography>
-        </Grid>
-        <br/>
-        <Grid item xs={12} sm={12}>
+      <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
+        <Grid item>
+          <Typography variant='h3' color='primary'>Register Now!</Typography>
+        </Grid>      
+        <Grid item>
           <FormControl>
             <TextField
-              rowsMax="6"
+              id="standard-full-width"
+              fullWidth
               value={email}
+              placeholder="Email"
               onChange={handleEmail}
             />
-            <FormHelperText>Email</FormHelperText>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={12}>
+        <Grid item>
           <FormControl>
             <TextField
-              rowsMax="6"
+              fullWidth
               value={password}
+              placeholder="Password"
               onChange={handlePass}
             />
-            <FormHelperText>Password</FormHelperText>
+            <FormHelperText>Password must be larger than 6 characters</FormHelperText>
           </FormControl>
         </Grid>
-        <Grid item xs={12}>
-          <br/>
-          <Button variant='contained' color='primary' onClick={handleSignup}>Sign Up</Button>
-        </Grid>        
+          <Grid item>
+            <Button className={classes.button} variant='contained' color='primary' onClick={handleSignup}>Sign Up</Button>
+            <Link to='/login'>
+              <Button className={classes.button} variant='outline' color='primary'>Log In</Button>
+            </Link>
+          </Grid>
       </Grid>
     </div>
   )

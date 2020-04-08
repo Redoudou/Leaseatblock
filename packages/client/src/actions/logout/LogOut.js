@@ -7,10 +7,6 @@ import Firebase from '../../firebase'
 const LogOut = () => {
   const [isLoggedIn, setLogin] = useState(true)
 
-  let provider = new Firebase.auth.GoogleAuthProvider()
-
-
-  
   useEffect(() => {
     if (Firebase.auth.User) {
       setLogin(true)

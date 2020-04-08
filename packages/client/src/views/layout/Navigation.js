@@ -118,18 +118,18 @@ const Navigation = () => {
         <AppBar className={classes.toobar} position='fixed' color='primary'>
           <Toolbar>
             <Grid container justify='left' alignItems='center' direction='row'>
-              <Grid item sm={6} md={7} lg={8}>
+              <Grid item xs={12} sm={12} md={6} lg={8}>
                 <Title prop={location.pathname} />
               </Grid>
-              <Grid item container direction='row'>
+              <Grid item xs={12} sm={12} md={6} lg={4} container direction='row'>
                 <Grid item>
                   <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
                     <AltTab label='About' value='/about' component={Link} to={'/about'} />
                     <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
-                    <AltTab label='Login' value='/login' component={Link} to={'/login'} />
+                    <AltTab label='Log In' value='/login' component={Link} to={'/login'} />
                   </Tabs>
                 </Grid>
-                <Grid item>
+                <Grid className={classes.button1} item>
                   <Button className={classes.button} variant='contained' color='secondary' href='/signup'>Register</Button>
                 </Grid>
               </Grid>

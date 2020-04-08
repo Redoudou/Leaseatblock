@@ -7,7 +7,7 @@ import {fb} from '../firebase'
 const defaultFirebaseContext = {
   authStatusReported: false,
   isUserSignedIn: false,
-  userObj: null
+  userObj: false
 }
 
 export const FirebaseAuthContext = React.createContext(defaultFirebaseContext)
@@ -22,7 +22,6 @@ export class FirebaseAuthProvider extends React.Component {
     fb.auth.onAuthStateChanged(user => this.setState({
       authStatusReported: true,
       isUserSignedIn: !!user,
-      userObj: user
     }))
   }
 
@@ -44,11 +43,16 @@ class ProtectedScreen extends React.Component {
       return (
           <FirebaseAuthContext.Consumer>
               {
-                  ({isUserSignedIn}) => {
+                  ({isUserSignedIn, userObj}) => {
                       if (isUserSignedIn) {
-                          return children
+                        return children
                       }
-                      return <Redirect to="/login" />;
+                      if (!userObj && isUserSignedIn) {
+                        return <Redirect to='/newuser' />
+                      }
+  
+                      return <Redirect to="/login" />
+                      
                   }
               }
           </FirebaseAuthContext.Consumer>

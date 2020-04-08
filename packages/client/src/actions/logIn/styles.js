@@ -1,9 +1,16 @@
 const styles = {
   root: {
-    marginTop: '15em',
+    marginTop: '10em',
+    marginLeft: '20%',
+    maxWidth: '600px',
+    alignItems: 'center',
+    justify: 'center'
   },
   button: {
-    marginTop: '3em'
+    marginTop: '0em'
+  },
+  spacer: {
+    minWidth: '23em'
   }
 }
 

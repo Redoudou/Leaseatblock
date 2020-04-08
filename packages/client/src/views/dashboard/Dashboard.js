@@ -17,30 +17,13 @@ const Dashboard = () => {
 
   const context = useContext(FirebaseAuthContext)
 
-  const login = () => {
-    setTimeout(() => {
-      return (
-        <Redirect to='/login' />
-      )
-    })
-  }
-
-  const newUser = () => {
-    return <Redirect to='/newuser' />
-  }
-
-  useEffect(() => {
-    if (!context.isUserSignedIn) {
-      login()
-    }
-    if (!isUser) {
-      newUser()
-    }
-  })
 
   return (
     <div className={classes.root}>
     <ProtectedScreen>
+      <Grid container>
+        <div>yo</div>
+      </Grid>
     </ProtectedScreen>
     </div>
   )
