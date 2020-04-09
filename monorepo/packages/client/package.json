@@ -46,6 +46,7 @@
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "serve": "PORT=8080 serve -s build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "fire": "firebase deploy --only hosting"
   }
 }

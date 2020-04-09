@@ -40,9 +40,6 @@ const ApplyLease = () => {
   if (isApp) {
     return <Redirect to='/account'/>
   }
-  if (!context.userID){
-    return <Redirect to='/login'/>
-  }
 
   return (
     <div className={classes.root}>
