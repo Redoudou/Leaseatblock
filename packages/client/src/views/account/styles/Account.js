@@ -1,6 +1,6 @@
 const styles = {
   root: {
-    paddingTop: '5em',
+    paddingTop: '12em',
     padding: '3em'
   },
   page: {

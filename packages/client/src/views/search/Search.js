@@ -6,6 +6,8 @@ import Firebase, {isUser} from '../../firebase'
 import {
   Container, 
   Card,
+  CardActionArea,
+  CardMedia,
   Grid, 
   Typography, 
   Button, 
@@ -38,6 +40,7 @@ const Search = () => {
   return (
     <div className={classes.root}>
       <Grid container justify='flex-start' alignItems='center'>
+        <Typography className={classes.title} variant='h2'>Listings</Typography>
         <FirestoreCollection
           path={'listings'}
           >
@@ -53,12 +56,20 @@ const Search = () => {
               }
               return (
                 <div>
-                  {data.map(listing => (
-                      <Grid key={listing.id} item xs={4} className={classes.listC}>
-                        <Card>
-                          {listing.address}
-                        </Card>
-                      </Grid>   
+                  {data.map(property => (
+                    <Grid className={classes.listingContainer} item xs={6} key={property.id}>
+                      <Card className={classes.listingCard}>
+                        <CardActionArea href={`/search/${property.id}`}>
+                        <CardMedia  
+                          className={classes.listingImg}
+                          component='img' 
+                          image={property.img} 
+                          title={property.address}
+                          ></CardMedia>                       
+                        <Typography variant='h6' color='error'>{property.address}</Typography>
+                        </CardActionArea>
+                      </Card>
+                    </Grid>
                   ))}
                 </div>
               )

@@ -16,9 +16,6 @@ const ToLogin = () => {
   return <Redirect to='/login'/>
 }
 
-const ToDashboard = () => {
-  return <Redirect to='/dashboard'/>
-}
 
 const OnBoard = () => {
   const classes = useStyles()
@@ -65,7 +62,7 @@ const OnBoard = () => {
 
   if (isOnBoarded === true) {
     return(
-      <Redirect to='/dashboard'/>
+      <Redirect to='/search'/>
     )
   } 
   if (isOnBoarded === false && error !== null) {

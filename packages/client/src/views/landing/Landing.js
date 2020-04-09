@@ -73,7 +73,7 @@ const Landing = () => {
             </Typography>
             <br />
             <Typography variant='h5' color='primary' className={classes.sub3}>
-              A private blockchain designed by the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled aptartments in New York City
+              Lease on the Bloc uses private blockchain designed for the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled aptartments in New York City
             </Typography>
           </Grid>
         </Grid>
@@ -91,7 +91,7 @@ const Landing = () => {
               </Typography>
               <br />
               <Typography variant='h5' color='primary'>
-                Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
+                Approved listings and leases are saved on a peer-to-peer network of tenants, landlords, and housing regulators, enclosed in a Kaleido consortium blockchain.
               </Typography>
             </Card>
           </Grid>
@@ -102,7 +102,7 @@ const Landing = () => {
               </Typography>
               <br />
               <Typography variant='h5' color='primary'>
-                Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
+                Our custom Kaleido implementation enforces trust between these three actors, leveling the political and informational playing field.
               </Typography>
             </Card>
           </Grid>
@@ -113,7 +113,7 @@ const Landing = () => {
               </Typography>
               <br />
               <Typography variant='h5' color='primary'>
-                Leases are stored on a peer-to-peer network of tenants, landlords, and housing regulators.
+                Documents are stored in Kaleido's Document Store service, distributed amoung nodes in the network for permanence and tracebility.
               </Typography>
             </Card>
           </Grid>

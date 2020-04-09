@@ -13,11 +13,6 @@ import styles from './styles'
 
 const useStyles = makeStyles(styles)
 
-const ToDashboard = () => {
-  return (
-    <Redirect to='/dashboard' />
-  )
-}
 
 const LogIn = () => {
   const classes = useStyles()
@@ -58,7 +53,7 @@ const LogIn = () => {
 
   if (isLoggedIn === true) {
     return(
-      <Redirect to='/dashboard'/>
+      <Redirect to='/search'/>
     )
   } 
   if (isLoggedIn === false && error !== null) {
@@ -66,7 +61,7 @@ const LogIn = () => {
       <div className={classes.root}>
         <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
           <Grid item>
-            <Typography  variant='h3' color='primary'>Welcome Back!</Typography>
+            <Typography  variant='h3' color='primary'>Welcome Back</Typography>
             <br/>
           </Grid>      
           <Typography color='error'>{error.message}</Typography>
@@ -87,6 +82,7 @@ const LogIn = () => {
                 fullWidth
                 value={password}
                 placeholder="Password"
+                type="password"
                 onChange={handlePass}
               />
               <FormHelperText>Password must be larger than 6 characters</FormHelperText>
@@ -107,7 +103,7 @@ const LogIn = () => {
     <div className={classes.root}>
       <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
         <Grid item>
-          <Typography  variant='h3' color='primary'>Welcome Back!</Typography>
+          <Typography  variant='h3' color='primary'>Welcome Back</Typography>
           <br/>
         </Grid>      
         <Grid item>
@@ -126,6 +122,7 @@ const LogIn = () => {
             <TextField
               fullWidth
               value={password}
+              type="password"
               placeholder="Password"
               onChange={handlePass}
             />

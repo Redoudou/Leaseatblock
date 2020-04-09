@@ -1,21 +1,11 @@
 {
-  "short_name": "Lease A Block",
-  "name": "Lease A Block - Standardize Leases on Ethereum",
+  "short_name": "Lease on the Bloc",
+  "name": "Lease on the Bloc - Rent Controlled Leases on the Blockchain",
   "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
     {
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",

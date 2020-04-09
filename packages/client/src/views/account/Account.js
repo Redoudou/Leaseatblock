@@ -31,7 +31,6 @@ const useStyles = makeStyles(styles)
 
 const Account = () => {
   const classes = useStyles()
-  const userID = useParams()
   const context = useContext(FirebaseAuthContext)
 
   return (
@@ -72,44 +71,54 @@ const Account = () => {
 const Landlord = (props) => {
   const classes = useStyles()
   const context = useContext(FirebaseAuthContext)
+
   return ( 
 
       <Grid container direction='column' justify='center' alignItems='stretch'>
-        <Grid item spacing={0} container direction='row' justify='flex-start' alignItems='center' >
+        <Grid item container direction='row' justify='flex-start' alignItems='center' >
           <Grid item>
             <Typography variant='h3'>Landlord Profile</Typography>
+            <hr/>
+            <Grid item>
+              <Link to={`/createlisting`}>
+                <Button variant='outlined' color='primary'>Add a new listing</Button>
+              </Link>
+            </Grid>
           </Grid>
-          <Grid item container>
+          <Grid spacing={5} container justify='flex-start' alignItems='center' direction='row'>
+
             <FirestoreCollection
-              path={`listings`}
+              path='/listings/'
               >
-              { ({error, isLoading, data}) => {
-                if (error) {
-                  return error.message
+              { res => {
+                if (res.error) {
+                  return res.error.message
                 }
-                if (isLoading) {
+                if (res.isLoading) {
                   return <CircularProgress></CircularProgress>
                 }
-                if (data.length !== 0) {
-                  console.log(data)
+                if (res.data.length !== 0) {
                   return (
                     <div>
                       <Grid style={{padding: '1em'}} item xs={4}><Typography variant='h4' color='primary'>Your Listings</Typography></Grid>
-                      {data.map(property => (
-                        <Grid className={classes.listingContainer} item xs={4} key={property.id}>
-                          <Card className={classes.listingCard}>
-                            <CardActionArea href={`/listing/${context.userID}/${property.id}`}>
-                            <CardMedia  
-                              className={classes.listingImg}
-                              component='img' 
-                              image={property.img} 
-                              title={property.address}
-                              ></CardMedia>                       
-                            <Typography variant='h6' color='error'>{property.address}</Typography>
-                            </CardActionArea>
-                          </Card>
-                        </Grid>
-                      ))}
+                      {res.data.map(property => {
+                        if (property.owner === context.userID) {
+                          return (
+                          <Grid className={classes.listingContainer} item xs={4} key={property.id}>
+                            <Card className={classes.listingCard}>
+                              <CardActionArea href={`/listing/${property.id}`}>
+                              <CardMedia  
+                                className={classes.listingImg}
+                                component='img'
+                                image={property.img}
+                                title={property.address}
+                                ></CardMedia>                       
+                              <Typography variant='h6' color='error'>{property.address}</Typography>
+                              </CardActionArea>
+                            </Card>
+                          </Grid>
+                        )}
+                      })}
                     </div>
                   )
                 } else {
@@ -117,14 +126,7 @@ const Landlord = (props) => {
                 }
               }}
             </FirestoreCollection>
-            <Grid item xs={12}>
-              <Link to={`/createlisting`}>
-                <Button variant='outlined' color='primary'>Add a new listing</Button>
-              </Link>
-            </Grid>
           </Grid>
-          
-
         </Grid>
       </Grid>
 
@@ -148,9 +150,31 @@ const Regulator = (props) => {
   const context = useContext(FirebaseAuthContext)
   return ( 
 
-      <Grid container direction='column' justify='center' alignItems='stretch'>
+      <Grid spacing={5} container direction='column' justify='center' alignItems='stretch'>
         <Grid>
-          <Typography variant='h3'>Welcome, {props.name}</Typography>
+          <Typography variant='h3'>Welcome, Regulator</Typography>
+        </Grid>
+        <Grid item>
+          <Typography variant='h6'>Confirmations</Typography>
+          <FirestoreCollection path='/users/'>
+            {({error, isLoading, data}) => {
+              if (error) return error.message
+              if (isLoading) return <CircularProgress></CircularProgress>
+              if (data.length === 0) {
+                return <Typography variant='h3' color='error'>No Incoming Applications</Typography>
+              }
+              return (
+                data.map(user => {
+                  if (user.isConfirmed) {
+                    return (
+                      <Grid item xs={12} key={user.id}>{user.fullName}</Grid>
+                    )
+                  }
+                }
+              )
+              )
+            }}
+          </FirestoreCollection>
         </Grid>
       </Grid>
   )

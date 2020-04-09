@@ -138,6 +138,7 @@ const Navigation = () => {
                   <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
                     <AltTab label='About' value='/about' component={Link} to={'/about'} />
                     <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
+                    <AltTab label="Search" value={'/search'} component={Link} to={'/search'}/>
                     <AltTab label='Log In' value='/login' component={Link} to={'/login'} />
                   </Tabs>
                 </Grid>

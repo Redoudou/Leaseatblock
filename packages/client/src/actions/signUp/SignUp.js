@@ -62,7 +62,7 @@ const SignUp = () => {
       <div className={classes.root}>
       <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
         <Grid item>
-          <Typography variant='h3' color='primary'>Register Now!</Typography>
+          <Typography variant='h3' color='primary'>Register</Typography>
           <Typography color='error'>{error.message}</Typography>     
         </Grid>    
         <Grid item>
@@ -82,6 +82,7 @@ const SignUp = () => {
               fullWidth
               value={password}
               placeholder="Password"
+              type="password"
               onChange={handlePass}
             />
             <FormHelperText>Password must be larger than 6 characters</FormHelperText>
@@ -102,7 +103,7 @@ const SignUp = () => {
     <div className={classes.root}>
       <Grid container spacing={5} direction='column' justify='space-around' alignItems='baseline'>
         <Grid item>
-          <Typography variant='h3' color='primary'>Register Now!</Typography>
+          <Typography variant='h3' color='primary'>Register</Typography>
         </Grid>      
         <Grid item>
           <FormControl>
@@ -121,6 +122,7 @@ const SignUp = () => {
               fullWidth
               value={password}
               placeholder="Password"
+              type="password"
               onChange={handlePass}
             />
             <FormHelperText>Password must be larger than 6 characters</FormHelperText>

@@ -37,7 +37,7 @@ export const isUser = (userID) => {
 }
 
 export const addListing = (data) => {
-  db.collection('listings').doc(data.owner).set(data)
+  db.collection('listings').doc().set(data)
 }
 
 export const fb = {

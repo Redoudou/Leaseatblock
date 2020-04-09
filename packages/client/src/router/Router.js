@@ -35,7 +35,7 @@ const Routes = () => {
         <Route exact path='/search' component={Search} />
         <Route exact path='/account' component={Account} />
         <Route exact path='/createlisting' component={CreateListing} />
-        <Route exact path='/search/:ownerID/:listID' component={Listing} />
+        <Route exact path='/search/:listID' component={Listing} />
         <Route exact path='/search/:listID/:leaseID' component={Lease} />
       </Switch>
   )
