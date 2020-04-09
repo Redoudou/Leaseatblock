@@ -18,7 +18,7 @@ const Footer = () => {
         <Grid item xs={12} sm={6}>
           <Hidden xsDown>
             <div className={classes.footerPrimary}>
-              <img className={classes.logo} height='30em' alt='LeaseOTB' src='https://storage.cloud.google.com/leaseotb-images/purplelogo2x.png' />
+              <img className={classes.logo} height='30em' alt='LeaseOTB' src='https://storage.googleapis.com/leaseotb-images/purplelogo2x.png' />
             </div>
           </Hidden>
         </Grid>

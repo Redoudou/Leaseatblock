@@ -41,7 +41,7 @@ const Title = (prop) => {
       <Grid container>
         <Grid item>
             <Link className={classes.logo} to='/'>
-              <img height='70em' alt='LeaseOTB' src='https://storage.cloud.google.com/leaseotb-images/aqualogo2x.png' />
+              <img height='70em' alt='LeaseOTB' src='https://storage.googleapis.com/leaseotb-images/aqualogo2x.png' />
             </Link>
         </Grid>
       </Grid>

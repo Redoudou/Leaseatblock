@@ -20,10 +20,10 @@ const Landing = () => {
         justify="center"
         alignItems="center" >
         <Grid item xs={12} sm={12} md={7}>
-          <img className={classes.i1} src='https://storage.cloud.google.com/leaseotb-images/groupwithblocs.png' alt='Block'></img>
+          <img className={classes.i1} src='https://storage.googleapis.com/leaseotb-images/groupwithblocs.png' alt='Block'></img>
         </Grid>
         <Grid item xs={12} sm={12} md={5} className={classes.s1}>
-          <img className={classes.logo} height='80rem' alt='LeaseOTB' src='https://storage.cloud.google.com/leaseotb-images/purplelogo2x.png' />
+          <img className={classes.logo} height='80rem' alt='LeaseOTB' src='https://storage.googleapis.com/leaseotb-images/purplelogo2x.png' />
           <div className={classes.purple} />
           <Typography variant='h5' color='primary' className={classes.title1}>
             Helping New York find and keep rent-stablized apartments
@@ -44,7 +44,7 @@ const Landing = () => {
           justify="center"
           alignItems="center" >
           <Grid item xs={12} sm={12} md={6}>
-            <img className={classes.i2} src='https://storage.cloud.google.com/leaseotb-images/pplwithlock.png' alt='block2'></img>
+            <img className={classes.i2} src='https://storage.googleapis.com/leaseotb-images/pplwithlock.png' alt='block2'></img>
           </Grid>
           <Grid item xs={12} sm={12} md={6} className={classes.s2}>
             <Card raised className={classes.cardBig}>

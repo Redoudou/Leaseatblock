@@ -20,7 +20,7 @@ const About= () => {
         justify="center"
         alignItems="center" >
           <Grid item xs={12} sm={12} md={7}>
-            <img className={classes.i1} src='https://storage.cloud.google.com/leaseotb-images/cubediamond.png' alt='Block'></img>
+            <img className={classes.i1} src='https://storage.googleapis.com/leaseotb-images/cubediamond.png' alt='Block'></img>
           </Grid>
           <Grid item xs={12} sm={12} md={5} className={classes.s1}>
             <br />
