@@ -1,15 +1,24 @@
 
-# Lease On The Block 
-### Lease On The Block Wis a decentralized private ledger using blockchain technology to safely record and track rent regulated apartments in New York City. 
 
+# Lease On The Block 
+### Lease On The Block is a decentralized private ledger using blockchain technology to safely record and track rent regulated apartments in New York City. 
+
+##  [White Paper](https://docs.google.com/document/d/1bMsQI3YBPY1uXccjBAVuCOZRbWk5MK9pt_mvgcqypQA/edit?usp=sharing)
+
+  ## Delivery follow up
+-   Week 1 : team formation etc. cf form submitted to Hackathon Admin
+-   [Week 2](https://docs.google.com/document/d/1bMsQI3YBPY1uXccjBAVuCOZRbWk5MK9pt_mvgcqypQA/edit#heading=h.6o9uby1myj3n) : user persona
+-   [Week 3 ,4 : wireframe , Proto](https://github.com/Redoudou/Leaseatblock/tree/master/SCREENS)  
+-   Week 5 : Final pitch Deck + Video Demo 
+##
 
 [The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](https://blockchainforsocialimpact.com/). 
-From February 18th till March 31st team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
+From February 18th till April 8th team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
 
  - [Make cities and human settlements inclusive, safe, resilient and sustainable](https://sustainabledevelopment.un.org/sdg11)
  - [Link the bounty page and judge requirements](https://gitcoin.co/issue/blockchainforsocialimpact/incubator/2/4017) 
 
-We will be building a solution that apply to New York regulation rent laws but we are looking to expand this inovation to any city.
+
 
 #### Important links
  - Project Slack space : leaseatblock.slack.com
@@ -20,9 +29,6 @@ We will be building a solution that apply to New York regulation rent laws but w
  - [Rent Regulation in NYC: How it works, what went wrong, and how to fix it](https://www.cssny.org/publications/entry/rent-regulation-in-new-york-city)
  
 
-
-### After the Hackathon : 
-Present this project to the [NYCEDC](https://edc.nyc/) and the think tank [New America](https://www.newamerica.org/) to have support of policy makers and lobbysts to deploy the solution to New York City and the 36 other american cities with rent regulations.
  
 ### The context:
 A product of nearly 100 years of advocacy and legislation, rent regulation is critical for low-income New Yorkers.
