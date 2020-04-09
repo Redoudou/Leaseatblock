@@ -8,7 +8,7 @@
   ## Delivery follow up
 -   Week 1 : team formation etc. cf form submitted to Hackathon Admin
 -   [Week 2](https://docs.google.com/document/d/1bMsQI3YBPY1uXccjBAVuCOZRbWk5MK9pt_mvgcqypQA/edit#heading=h.6o9uby1myj3n) : user persona
--   [Week 3 ,4 : wireframe , Proto](https://github.com/Redoudou/Leaseatblock/tree/master/SCREENS)  
+-   [Week 3 ,4 : wireframe , Proto](https://github.com/Redoudou/Leaseatblock/blob/master/27March-LOTB%20-%20Week%204%20delivery.pdf)  
 -   Week 8 :  
     [Pitch Deck  
     ](https://github.com/Redoudou/Leaseatblock/blob/master/LeaseOnTheBlock-Pitch-Deck.pdf)[Video Demo](https://github.com/Redoudou/Leaseatblock/blob/master/LOTB-Demo-Pitch%20Deck.mp4)
