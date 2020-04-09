@@ -12,11 +12,32 @@
 -   Week 8 :  
     [Pitch Deck  
     ](https://github.com/Redoudou/Leaseatblock/blob/master/LeaseOnTheBlock-Pitch-Deck.pdf)[Video Demo](https://github.com/Redoudou/Leaseatblock/blob/master/LOTB-Demo-Pitch%20Deck.mp4)
-##
+    
+#### Our Pepo Videos 
 
-# Lease At Block 
+1.  [March 25 - Red LOTB Founder](https://pepo.com/video/22942?utm_source=share&utm_medium=video&utm_campaign=22942)
+    
+2.  [March 27 - Genevieve LOTB Mentor !](https://pepo.com/video/23020?utm_source=share&utm_medium=video&utm_campaign=23020)
+    
+3.  [March 27 - Outdoor LOTB before delivery](https://pepo.com/video/23025?utm_source=share&utm_medium=video&utm_campaign=23025)
+    
+4.  [March 28 - Gael LOTB UX/UI Designer](https://pepo.com/video/23130?utm_source=share&utm_medium=video&utm_campaign=23130)
+    
+5.  [March 28 - Peter LOTB Back end engineer](https://pepo.com/video/23095?utm_source=share&utm_medium=video&utm_campaign=23095)
+    
+6.  [March 28 - Red LOTB enjoy the outdoors NYC confinement !](https://pepo.com/video/23091?utm_source=share&utm_medium=video&utm_campaign=23091)
+    
+7.  [April 4th - 1st dry pitch for LOB !](https://pepo.com/video/23422?utm_source=share&utm_medium=video&utm_campaign=23422)
+    
+8.  [April 4th - Zach LOTB - Tech Lead](https://pepo.com/video/23428?utm_source=share&utm_medium=video&utm_campaign=23428)
+  
+9.  [April 8th - LOTB It’s the final countdown !](https://pepo.com/video/23533?utm_source=share&utm_medium=video&utm_campaign=23533)
+ 
+###  
+
+# Lease On The Block 
 ### Lease on the Block is contract management system specific for low income housing in New York City. It stores the lease in a unique, a secured, immutable and traceable blockchain. Bottom line, we want to link a rent-sabilized lease with the affordable housing tax incentives that the developer benefited. (LIHTC, j51, 421a....)
->>>>>>> dev:monorepo/README.md
+
 
 [The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](https://blockchainforsocialimpact.com/). 
 From February 18th till April 8th team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
@@ -44,11 +65,8 @@ Rent regulation mediates the severe power imbalance between tenants and landlord
 - Rent Stabilization giver renters the right to stay in their apartment with modest rent increases each year, typically between 2 - 6%.
 
 ### The Problem we tackle:
-<<<<<<< HEAD:README.md
-Since 1990, we estimate New York City has lost 300 000 rent-regulated apartments. A lot of tenants do not know they are in a rent regulated apartment and thus are being abused by realtors.  The city lacks a system that tracks rent-regulated. It’s almost impossible to know if an apartment is under that regulation or not. 
-=======
+
 Since 1990, we estimate New York City has lost 300 000 rent-stabilized apartments. A lot of tenants do not know they are in a rent-controlled apartment and thus are being abused by realtors. The city lacks a system that tracks rent-stabilized. It’s almost impossible to know if an apartment is under that regulation or not. Systems between various agency NYSHA, HCR, HPDP, NYCHDC do not share information and can't always communicate. Thanks to Blockchain technology Lease On the Block preserve privacy while offering shared and unified data across the agencies.  
->>>>>>> dev:monorepo/README.md
 
 ### Do we need a Blockchain ?
 ![enter image description here](https://i.ibb.co/PFq09Yx/Screenshot-from-2019-10-14-01-48-54.png)
