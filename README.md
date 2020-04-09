@@ -1,6 +1,6 @@
 
 
-# Lease On The Block 
+![enter image description here](https://i.ibb.co/h9vC4jy/lotb-banniere.png)
 ### Lease On The Block is a decentralized private ledger using blockchain technology to safely record and track rent regulated apartments in New York City. 
 
 ##  [White Paper](https://docs.google.com/document/d/1bMsQI3YBPY1uXccjBAVuCOZRbWk5MK9pt_mvgcqypQA/edit?usp=sharing)
