@@ -1,4 +1,5 @@
 
+
 <<<<<<< HEAD:README.md
 
 ![enter image description here](https://i.ibb.co/h9vC4jy/lotb-banniere.png)
@@ -10,9 +11,11 @@
 -   Week 1 : team formation etc. cf form submitted to Hackathon Admin
 -   [Week 2](https://docs.google.com/document/d/1bMsQI3YBPY1uXccjBAVuCOZRbWk5MK9pt_mvgcqypQA/edit#heading=h.6o9uby1myj3n) : user persona
 -   [Week 3 ,4 : wireframe , Proto](https://github.com/Redoudou/Leaseatblock/tree/master/SCREENS)  
--   Week 5 : Final pitch Deck + Video Demo 
+-   Week 8 :  
+    [Pitch Deck  
+    ](https://github.com/Redoudou/Leaseatblock/blob/master/LeaseOnTheBlock-Pitch-Deck.pdf)[Video Demo](https://github.com/Redoudou/Leaseatblock/blob/master/LOTB-Demo-Pitch%20Deck.mp4)
 ##
-=======
+
 # Lease At Block 
 ### Lease on the Block is contract management system specific for low income housing in New York City. It stores the lease in a unique, a secured, immutable and traceable blockchain. Bottom line, we want to link a rent-sabilized lease with the affordable housing tax incentives that the developer benefited. (LIHTC, j51, 421a....)
 >>>>>>> dev:monorepo/README.md
