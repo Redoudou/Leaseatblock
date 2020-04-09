@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD:README.md
 
 ![enter image description here](https://i.ibb.co/h9vC4jy/lotb-banniere.png)
 ### Lease On The Block is a decentralized private ledger using blockchain technology to safely record and track rent regulated apartments in New York City. 
@@ -11,6 +12,10 @@
 -   [Week 3 ,4 : wireframe , Proto](https://github.com/Redoudou/Leaseatblock/tree/master/SCREENS)  
 -   Week 5 : Final pitch Deck + Video Demo 
 ##
+=======
+# Lease At Block 
+### Lease on the Block is contract management system specific for low income housing in New York City. It stores the lease in a unique, a secured, immutable and traceable blockchain. Bottom line, we want to link a rent-sabilized lease with the affordable housing tax incentives that the developer benefited. (LIHTC, j51, 421a....)
+>>>>>>> dev:monorepo/README.md
 
 [The Gitcoin Virtual Hackathon Decentralized Impact Incubator](https://gitcoin.co/hackathon/onboard/decentralized-impact-incubator/) is an on-line hackathon sponsored by [Blockchain for Social Impact](https://blockchainforsocialimpact.com/). 
 From February 18th till April 8th team will develop a product to resolve the United Nation Sustainable Development Goals number 11 :
@@ -38,7 +43,11 @@ Rent regulation mediates the severe power imbalance between tenants and landlord
 - Rent Stabilization giver renters the right to stay in their apartment with modest rent increases each year, typically between 2 - 6%.
 
 ### The Problem we tackle:
+<<<<<<< HEAD:README.md
 Since 1990, we estimate New York City has lost 300 000 rent-regulated apartments. A lot of tenants do not know they are in a rent regulated apartment and thus are being abused by realtors.  The city lacks a system that tracks rent-regulated. It’s almost impossible to know if an apartment is under that regulation or not. 
+=======
+Since 1990, we estimate New York City has lost 300 000 rent-stabilized apartments. A lot of tenants do not know they are in a rent-controlled apartment and thus are being abused by realtors. The city lacks a system that tracks rent-stabilized. It’s almost impossible to know if an apartment is under that regulation or not. Systems between various agency NYSHA, HCR, HPDP, NYCHDC do not share information and can't always communicate. Thanks to Blockchain technology Lease On the Block preserve privacy while offering shared and unified data across the agencies.  
+>>>>>>> dev:monorepo/README.md
 
 ### Do we need a Blockchain ?
 ![enter image description here](https://i.ibb.co/PFq09Yx/Screenshot-from-2019-10-14-01-48-54.png)
