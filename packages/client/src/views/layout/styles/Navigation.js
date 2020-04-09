@@ -43,6 +43,10 @@ const styles = {
   },
   button1: {
     paddingLeft: '2em',
+    padding: '0em'
+  },
+  button2: {
+    paddingLeft: '2em',
     paddingTop: '1em'
   },
   buttonD: {
@@ -52,7 +56,8 @@ const styles = {
     paddingTop: '1.3em',
     marginBottom: '0em',
     textAlign: 'right',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    paddingLeft: '1em'
   }
 
 }

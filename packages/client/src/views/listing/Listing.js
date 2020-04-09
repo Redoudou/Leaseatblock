@@ -61,23 +61,7 @@ export const Listing = () => {
                         </Grid>
                       </Grid>
                       <Grid item xs={12}>
-                        <FirestoreDocument
-                          path={`users/${context.userID}`}>
-                          {({error, isLoading, data}) => {
-                            if (error) return error.message
-                            if (isLoading) return <CircularProgress></CircularProgress>
-                            if (data.userType === 'tenant') {
-                              return (
-                                <Button variant='contained' color='primary'>Apply</Button>
-                              )
-                            }
-                            if (data.userType !== 'tenant' || !data) {
-                              return (
-                                <Button variant='disabled' color='primary'>Apply</Button>
-                              )
-                            }
-                          }}}
-                        </FirestoreDocument>
+                        <Button variant={context.isUserSignedIn ? 'contained' : 'disabled'} color='primary' href={`/apply/${listID}`}>Apply</Button>
                       </Grid>
 
                     </div>

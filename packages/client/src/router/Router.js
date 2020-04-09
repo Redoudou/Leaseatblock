@@ -16,8 +16,7 @@ import LogIn from '../actions/logIn/LogIn'
 import LogOut from '../actions/logOut/LogOut'
 import SignUp from '../actions/signUp/SignUp'
 import OnBoard from '../actions/signUp/OnBoard'
-import CreateListing from '../actions/createListing/CreateListing'
-
+import ApplyLease from '../actions/applyLease/ApplyLease'
 
 const Routes = () => {
 
@@ -25,7 +24,6 @@ const Routes = () => {
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/about' component={About} />
-        <Route exact path='/faq' component={FAQ} />
 
         <Route exact path='/login' component={LogIn} />
         <Route exact path='/logout' component={LogOut} />
@@ -34,7 +32,7 @@ const Routes = () => {
         
         <Route exact path='/search' component={Search} />
         <Route exact path='/account' component={Account} />
-        <Route exact path='/createlisting' component={CreateListing} />
+        <Route exact path='/apply/:leaseID' component={ApplyLease} />
         <Route exact path='/search/:listID' component={Listing} />
         <Route exact path='/search/:listID/:leaseID' component={Lease} />
       </Switch>

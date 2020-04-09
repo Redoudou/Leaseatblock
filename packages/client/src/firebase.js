@@ -36,6 +36,10 @@ export const isUser = (userID) => {
   return false
 }
 
+export const applyLease = (userID, prop) => {
+  db.collection('leases').doc(userID).set(prop)
+}
+
 export const addListing = (data) => {
   db.collection('listings').doc().set(data)
 }

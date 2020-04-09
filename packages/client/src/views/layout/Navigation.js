@@ -73,23 +73,14 @@ const Navigation = () => {
                 container
                 justify="flex-start"
                 alignItems="center"
+                direction='row'
                 >
-                <Grid item xs={12} sm={12} md={7} lg={8} xl={5}>
+                <Grid item xs={12} sm={12} md={12}>
                   <Title prop={location.pathname} />
                 </Grid>
-                <Grid item xs={6} sm={9} md={5} container justify='flex-end' direction='row-reverse'>
-                  <Grid item >
-                    <div className={classes.button1}>
-                      <Link to='/logout' style={{textDecoration: 'none'}}>
-                        <Button variant='outlined' size='small' color='secondary'>
-                            Log Out
-                        </Button>
-                      </Link>
-                    </div>
-                  </Grid>
-                  
-                  <Grid className={classes.welcome} item xs={6} md={3} lg={6} >
-                    <Link to='/dashboard' style={{textDecoration: 'none'}}>
+                <Grid container direction='row-reverse'>
+                  <Grid className={classes.welcome} item sm={12} md={4} lg={2} container direction='row'>
+                    <Link to='/account' style={{textDecoration: 'none'}}>
                         <FirestoreDocument path={`users/${context.userID}`}>        
                         { ({error, isLoading, data}) => {
                           if (error) {
@@ -106,17 +97,23 @@ const Navigation = () => {
                         </FirestoreDocument>
                       <br/>
                     </Link>
+                    <div className={classes.button1}>
+                      <Link to='/logout' style={{textDecoration: 'none'}}>
+                        <Button variant='outlined' size='small' color='secondary'>
+                            Log Out
+                        </Button>
+                      </Link>
+                    </div>
+                  </Grid>
+                  <Grid item sm={12} md={4} lg={3}>
+                    <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
+                      <AltTab label='About' value='/about' component={Link} to={'/about'} />
+                      <div className={classes.alinger}/>
+                      <AltTab label="Search" value={'/search'} component={Link} to={'/search'}/>
+                      <AltTab label="Account" value={`/account`} component={Link} to={`/account`}/>
+                    </Tabs>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sm={12} md={12}>
-                    <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
-                        <AltTab label='About' value='/about' component={Link} to={'/about'} />
-                        <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
-                        <div className={classes.alinger}/>
-                        <AltTab label="Search" value={'/search'} component={Link} to={'/search'}/>
-                        <AltTab label="Account" value={`/account`} component={Link} to={`/account`}/>
-                      </Tabs>
-                  </Grid>
               </Grid>
             </Toolbar>
           </AppBar>
@@ -137,12 +134,11 @@ const Navigation = () => {
                 <Grid item>
                   <Tabs indicatorColor='secondary' className={classes.tabs} value={location.pathname}>
                     <AltTab label='About' value='/about' component={Link} to={'/about'} />
-                    <AltTab label='FAQ' value='/faq' component={Link} to={'/faq'} />
                     <AltTab label="Search" value={'/search'} component={Link} to={'/search'}/>
                     <AltTab label='Log In' value='/login' component={Link} to={'/login'} />
                   </Tabs>
                 </Grid>
-                <Grid className={classes.button1} item>
+                <Grid className={classes.button2} item>
                   <Button className={classes.button} variant='contained' color='secondary' href='/signup'>Register</Button>
                 </Grid>
               </Grid>

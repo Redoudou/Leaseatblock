@@ -8,7 +8,7 @@ const styles = {
     position: 'fixed'
   },
   title: {
-    marginBottom: '1em'
+    margin: '2em'
   },
   listingContainer: {
     margin: '3em'

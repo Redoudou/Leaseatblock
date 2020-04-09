@@ -4,7 +4,7 @@ const styles = {
     to: {opacity: 1}
   },
   root: {
-    paddingTop: '5em',
+    paddingTop: '10em',
     animation: '$pageLoad 3s',
     maxWidth: '100%'
   },

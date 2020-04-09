@@ -54,7 +54,7 @@ const Landing = () => {
               </Typography>
               <br />
               <Typography variant='body1' color='secondary' className={classes.sub2}>
-                A private blockchain designed by the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled aptartments in New York City.
+                A private blockchain designed by the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled properties.
               </Typography>
             </Card>
           </Grid>
@@ -72,9 +72,6 @@ const Landing = () => {
               Why Blockchain?
             </Typography>
             <br />
-            <Typography variant='h5' color='primary' className={classes.sub3}>
-              Lease on the Bloc uses private blockchain designed for the Housing & Community Renewal Agency to track and monitor proper management of rent-controlled aptartments in New York City
-            </Typography>
           </Grid>
         </Grid>
         <Grid 

@@ -57,7 +57,7 @@ const Search = () => {
               return (
                 <div>
                   {data.map(property => (
-                    <Grid className={classes.listingContainer} item xs={6} key={property.id}>
+                    <Grid className={classes.listingContainer} item xs={12} key={property.id}>
                       <Card className={classes.listingCard}>
                         <CardActionArea href={`/search/${property.id}`}>
                         <CardMedia  

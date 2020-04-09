@@ -73,20 +73,33 @@ const Landlord = (props) => {
   const context = useContext(FirebaseAuthContext)
 
   return ( 
-
-      <Grid container direction='column' justify='center' alignItems='stretch'>
-        <Grid item container direction='row' justify='flex-start' alignItems='center' >
-          <Grid item>
-            <Typography variant='h3'>Landlord Profile</Typography>
-            <hr/>
-            <Grid item>
-              <Link to={`/createlisting`}>
-                <Button variant='outlined' color='primary'>Add a new listing</Button>
-              </Link>
-            </Grid>
-          </Grid>
-          <Grid spacing={5} container justify='flex-start' alignItems='center' direction='row'>
-
+        <Grid container direction='row' justify='center' alignItems='stretch' >
+          <Grid container direction='row'>
+            <Grid item>             
+              <Typography variant='h3'>Landlord Profile</Typography>
+                  <Grid container item xs={6}>
+              <FirestoreCollection path='/leases/'>
+                {({error, isLoading, data}) => {
+                  if (error) return error.message
+                  if (isLoading) return <CircularProgress></CircularProgress>
+                  if (data.length === 0) {
+                    return <Typography variant='h4' color='error'>No pending leases</Typography>
+                  }
+                  return (
+                    <div>
+                      <Typography variant='h4' color='primary'>Pending Leases</Typography>
+                      {data.map(lease => (
+                          <Grid item xs={12} key={lease.id}>
+                            <Typography variant='h3' color='error'>{lease.leaseID}</Typography>
+                          </Grid>
+                        )
+                      )}
+                    </div>
+                  )
+                  
+                }}
+              </FirestoreCollection>
+              </Grid>
             <FirestoreCollection
               path='/listings/'
               >
@@ -100,13 +113,14 @@ const Landlord = (props) => {
                 if (res.data.length !== 0) {
                   return (
                     <div>
-                      <Grid style={{padding: '1em'}} item xs={4}><Typography variant='h4' color='primary'>Your Listings</Typography></Grid>
+                      <br/>
+                      <br/>
                       {res.data.map(property => {
                         if (property.owner === context.userID) {
                           return (
                           <Grid className={classes.listingContainer} item xs={4} key={property.id}>
                             <Card className={classes.listingCard}>
-                              <CardActionArea href={`/listing/${property.id}`}>
+                              <CardActionArea href={`/search/${property.id}`}>
                               <CardMedia  
                                 className={classes.listingImg}
                                 component='img'
@@ -126,10 +140,12 @@ const Landlord = (props) => {
                 }
               }}
             </FirestoreCollection>
+            <Link to={`/createlisting`}>
+                <Button variant='outlined' color='primary'>Add a new listing</Button>
+              </Link>
           </Grid>
         </Grid>
-      </Grid>
-
+</Grid>
   )
 }
 
@@ -137,11 +153,39 @@ const Tenant = (props) => {
   const classes = useStyles()
   const context = useContext(FirebaseAuthContext)
   return ( 
-      <Grid container direction='column' justify='center' alignItems='stretch'>
-        <Grid item>
-        
-        </Grid>
-      </Grid>
+    <Grid spacing={5} container direction='column' justify='center' alignItems='stretch'>
+    <Grid>
+      <Typography variant='h3'>Tenant Profile</Typography>
+    </Grid>
+    <Grid item>
+      <Typography variant='h4 '>Pending Leases for user #</Typography>
+      <Typography variant='h6'>{context.userID}</Typography>
+    </Grid>
+    <Grid item>
+      <FirestoreCollection path='/leases/'>
+        {({error, isLoading, data}) => {
+          if (error) return error.message
+          if (isLoading) return <CircularProgress></CircularProgress>
+          if (data.length === 0) {
+            return <Typography variant='h3' color='error'>No pending leases</Typography>
+          }
+          return (
+            <div>
+              <Typography variant='h3' color='primary'>Pending Leases</Typography>
+              {data.map(lease => (
+                  <Grid item xs={12} key={lease.id}>
+                    <Typography variant='h3' color='error'>{lease.leaseID}</Typography>
+                  </Grid>
+                )
+              )}
+            </div>
+          )
+           
+        }}
+      </FirestoreCollection>
+    </Grid>
+
+  </Grid>
   )
 }
 
