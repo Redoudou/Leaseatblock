@@ -138,9 +138,11 @@ const Navigation = () => {
                     <AltTab label='Log In' value='/login' component={Link} to={'/login'} />
                   </Tabs>
                 </Grid>
-                <Grid className={classes.button2} item>
-                  <Button className={classes.button} variant='contained' color='secondary' href='/signup'>Register</Button>
-                </Grid>
+                <Hidden smDown>
+                  <Grid className={classes.button2} item>
+                    <Button className={classes.button} variant='contained' color='secondary' href='/signup'>Register</Button>
+                  </Grid>
+                </Hidden>
               </Grid>
             </Grid>
           </Toolbar>
