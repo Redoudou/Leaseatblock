@@ -7,7 +7,7 @@ Workspaces makes it possible to setup multiple packages in such a way that we on
 a single pass. Dependencies are hoisted at the root.
 
 ```
-my-eth-app
+client
 ├── README.md
 ├── node_modules
 ├── package.json
