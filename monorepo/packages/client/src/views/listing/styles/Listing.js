@@ -1,6 +1,7 @@
 const styles = {
   root: {
-    paddingTop: '7em'
+    paddingTop: '7em',
+    maxWidth: '1200px'
   },
   result: {
     margin: '5em'

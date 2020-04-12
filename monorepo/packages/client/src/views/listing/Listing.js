@@ -36,49 +36,45 @@ export const Listing = () => {
 
   return (
     <div className={classes.root} >
-      <Grid container>
-        <Grid item>
-          <FirestoreDocument
-            path={`listings/${listID}`}>
-              {({error, isLoading, data}) => {
-                if (error) {
-                  return error.message
-                }
-                if (isLoading) {
-                  return <CircularProgress></CircularProgress>
-                }
-                console.log(data)
-                if (data) {
-                  return (
-                    <div className={classes.result}>
-                      <Breadcrumbs className={classes.breadcrumb} aria-label="breadcrumb">
-                        <Link to='/search' style={{textDecoration: 'none'}}>
-                          LISTINGS
-                        </Link>
-                        <Typography color='primary'>{data.address}</Typography>
-                      </Breadcrumbs>
-                      <Grid container direction='column' justify='flex-start' className={classes.listing}>
-                        <Grid item xs={12} className={classes.address}>
-                          <Typography variant='h3' color='primary'>
-                            {data.address}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <img src={data.img}></img>
-                        </Grid>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <Button variant={context.isUserSignedIn ? 'contained' : 'disabled'} color='primary' href={`/apply/${listID}`}>Apply</Button>
-                      </Grid>
-                    </div>
-                  )
-                } else {
-                  return <Redirect to='/search'></Redirect>
-                }
-              }}
-            </FirestoreDocument>
-        </Grid>
-      </Grid>
+      <FirestoreDocument
+        path={`listings/${listID}`}>
+          {({error, isLoading, data}) => {
+            if (error) {
+              return error.message
+            }
+            if (isLoading) {
+              return <CircularProgress></CircularProgress>
+            }
+            console.log(data)
+            if (data) {
+              return (
+                <Grid container xs={12} direction='column' className={classes.result}>
+                  <Breadcrumbs className={classes.breadcrumb} aria-label="breadcrumb">
+                    <Link to='/search' style={{textDecoration: 'none'}}>
+                      LISTINGS
+                    </Link>
+                    <Typography color='primary'>{data.address}</Typography>
+                  </Breadcrumbs>
+                  <Grid container direction='column' justify='flex-start' className={classes.listing}>
+                    <Grid item xs={12} className={classes.address}>
+                      <Typography variant='h3' color='primary'>
+                        {data.address}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <img src={data.img}></img>
+                    </Grid>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button variant={context.isUserSignedIn ? 'contained' : 'disabled'} color='primary' href={`/apply/${listID}`}>Apply</Button>
+                  </Grid>
+                </Grid>
+              )
+            } else {
+              return <Redirect to='/search'></Redirect>
+            }
+          }}
+        </FirestoreDocument>
     </div>
   )
 }
