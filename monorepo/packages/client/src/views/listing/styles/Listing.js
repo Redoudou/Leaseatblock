@@ -1,11 +1,20 @@
 const styles = {
   root: {
-    paddingTop: '10em'
+    paddingTop: '7em'
   },
   result: {
-    marginTop: '5em'
+    margin: '5em'
+  },
+  breadcrumb: {
+    marginLeft: '5em',
+    margin: '4em'
+  },
+  listing: {
+    padding: '5em'
+  },
+  address: {
+    margin: '3em'
   }
-  
 }
 
 export default styles

@@ -66,9 +66,9 @@ const Search = () => {
                           image={property.img} 
                           title={property.address}
                           ></CardMedia>                       
-                        <Typography variant='h6' color='error'>{property.address}</Typography>
                         </CardActionArea>
                       </Card>
+                      <Typography variant='h6' color='error'>{property.address}</Typography>
                     </Grid>
                   ))}
                 </div>

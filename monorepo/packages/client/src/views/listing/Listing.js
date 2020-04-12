@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
-import {useParams, Redirect, withRouter} from 'react-router-dom'
+import {useParams, Redirect, withRouter, Link} from 'react-router-dom'
 import {
   Paper,
   Grid,
@@ -12,7 +12,8 @@ import {
   Button,
   Card,
   CardActionArea,
-  CardMedia
+  CardMedia,
+  Breadcrumbs,
 } from '@material-ui/core'
 import {makeStyles} from '@material-ui/styles'
 import {FirestoreDocument} from 'react-firestore'
@@ -50,8 +51,14 @@ export const Listing = () => {
                 if (data) {
                   return (
                     <div className={classes.result}>
-                      <Grid container>
-                        <Grid item xs={12}>
+                      <Breadcrumbs className={classes.breadcrumb} aria-label="breadcrumb">
+                        <Link to='/search' style={{textDecoration: 'none'}}>
+                          LISTINGS
+                        </Link>
+                        <Typography color='primary'>{data.address}</Typography>
+                      </Breadcrumbs>
+                      <Grid container direction='column' justify='flex-start' className={classes.listing}>
+                        <Grid item xs={12} className={classes.address}>
                           <Typography variant='h3' color='primary'>
                             {data.address}
                           </Typography>
@@ -63,7 +70,6 @@ export const Listing = () => {
                       <Grid item xs={12}>
                         <Button variant={context.isUserSignedIn ? 'contained' : 'disabled'} color='primary' href={`/apply/${listID}`}>Apply</Button>
                       </Grid>
-
                     </div>
                   )
                 } else {

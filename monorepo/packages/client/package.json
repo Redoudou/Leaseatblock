@@ -36,7 +36,7 @@
     "@types/react": "^16.9.19",
     "eslint": "^6.8.0",
     "eslint-plugin-flowtype": "^4.6.0",
-    "firebase-tools": "^8.0.1"
+    "firebase-tools": "^8.0.2"
   },
   "eslintConfig": {
     "extends": "client"

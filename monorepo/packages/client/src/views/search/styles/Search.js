@@ -13,7 +13,7 @@ const styles = {
   },
   listingContainer: {
     margin: '3em'
-  }
+  },
 }
 
 export default styles 
