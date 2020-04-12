@@ -40,7 +40,7 @@ const Search = () => {
   return (
     <div className={classes.root}>
       <Grid container justify='flex-start' alignItems='center'>
-        <Typography className={classes.title} variant='h2'>Listings</Typography>
+        <Typography className={classes.title} variant='h2'>Current Listings</Typography>
         <FirestoreCollection
           path={'listings'}
           >

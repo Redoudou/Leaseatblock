@@ -1,13 +1,14 @@
 const styles = {
   root: {
-    paddingTop: '12em',
-    maxWidth: '500px',
+    paddingTop: '8em',
+    maxWidth: '1200px',
     margin: 'auto'
   },
   bar: {
     position: 'fixed'
   },
   title: {
+    paddingTop: '0em',
     margin: '2em'
   },
   listingContainer: {

@@ -99,7 +99,7 @@ const styles = {
   c3: {
     maxWidth: '1200px',
     margin: '0 auto',
-    padding: '5em'
+    padding: '0em'
   },
 }
 
