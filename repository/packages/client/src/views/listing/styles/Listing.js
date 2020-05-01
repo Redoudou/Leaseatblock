@@ -4,7 +4,7 @@ const styles = {
     maxWidth: '1200px'
   },
   result: {
-    margin: '5em'
+    margin: '5em',
   },
   breadcrumb: {
     marginLeft: '5em',
