@@ -9,10 +9,11 @@ const styles = {
   },
   title: {
     paddingTop: '0em',
-    margin: '2em'
+    margin: '1em'
   },
   listingContainer: {
-    margin: '3em'
+    margin: '3em',
+    maxWidth: '40em'
   },
 }
 

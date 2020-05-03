@@ -19,11 +19,13 @@ export class FirebaseAuthProvider extends React.Component {
   state = defaultFirebaseContext
 
   componentDidMount() {
-    fb.auth.onAuthStateChanged(user => this.setState({
-      authStatusReported: true,
-      isUserSignedIn: !!user,
-      userID: user.uid
-    }))
+    fb.auth.onAuthStateChanged(user => {
+      this.setState({
+        authStatusReported: true,
+        isUserSignedIn: !!user,
+        userID: user.uid
+      })
+    })
   }
 
   render() {

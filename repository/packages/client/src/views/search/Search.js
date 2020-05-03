@@ -24,7 +24,9 @@ import {
 import {makeStyles} from '@material-ui/styles'
 import {Link, Switch, BrowserRouter as Router, Route, Redirect, withRouter, useRouteMatch, useParams} from 'react-router-dom'
 import {FirestoreCollection} from 'react-firestore'
-
+import MapIcon from '@material-ui/icons/Map';
+import ListIcon from '@material-ui/icons/List';
+import SearchMethod from './SearchMethod'
 import styles from './styles/Search'
 
 
@@ -34,13 +36,25 @@ const Search = () => {
   const classes = useStyles()
 
   const context = useContext(FirebaseAuthContext)
-
   let {path, url} = useRouteMatch()
+
+
+  const [value, setValue] = useState()
+  
+  useEffect(() => {
+    setValue(0)
+  }, [])
+
+  const handleChange = (event, newValue) => {
+    console.log(newValue)
+    setValue(newValue)
+  }
 
   return (
     <div className={classes.root}>
-      <Grid container justify='flex-start' alignItems='center'>
-        <Typography className={classes.title} variant='h2'>Current Listings</Typography>
+      <Grid container justify='flex-start' alignItems='flex-start' direction='row'>
+        <Grid item xs={12}>
+        </Grid>
         <FirestoreCollection
           path={'listings'}
           >
@@ -52,25 +66,19 @@ const Search = () => {
                 return <CircularProgress></CircularProgress>
               }
               if (data.length === 0) {
-                return <Typography variant='h3' color='error'>No Listings Yet!</Typography>
+                return <Typography variant='h4' color='error'>No Listings Yet!</Typography>
               }
               return (
                 <div>
-                  {data.map(property => (
-                    <Grid className={classes.listingContainer} item xs={12} key={property.id}>
-                      <Card className={classes.listingCard}>
-                        <CardActionArea href={`/search/${property.id}`}>
-                        <CardMedia  
-                          className={classes.listingImg}
-                          component='img' 
-                          image={property.img} 
-                          title={property.address}
-                          ></CardMedia>                       
-                        </CardActionArea>
-                      </Card>
-                      <Typography variant='h6' color='error'>{property.address}</Typography>
-                    </Grid>
-                  ))}
+                  <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    indicatorColor='primary'
+                  >
+                    <Tab disableRipple icon={<MapIcon/>} value={0}/>
+                    <Tab disableRipple icon={<ListIcon/>} value={1}/>
+                  </Tabs>
+                  <SearchMethod data={data} value={value}/>
                 </div>
               )
             }}
