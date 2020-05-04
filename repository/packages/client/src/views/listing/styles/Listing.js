@@ -1,20 +1,20 @@
 const styles = {
   root: {
-    paddingTop: '7em',
+    paddingTop: '2em',
     maxWidth: '1200px'
   },
   result: {
     margin: '5em',
   },
   breadcrumb: {
-    marginLeft: '5em',
+    marginLeft: '0em',
     margin: '4em'
   },
   listing: {
-    padding: '5em'
+    padding: ''
   },
   address: {
-    margin: '3em'
+    margin: '0em'
   }
 }
 

@@ -26,10 +26,10 @@ import Map from './Map'
 const useStyles = makeStyles(styles)
 
 const dataPrep = (data) => {
-  let prep = []
-  for (let x = 0; x < data.length; x++) {
-    prep[x] = data[x].address
-  }
+  let prep = data
+
+  console.log(prep[0])
+  return prep
 }
 
 const SearchMethod = (props) => {

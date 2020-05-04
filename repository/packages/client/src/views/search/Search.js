@@ -32,15 +32,40 @@ import styles from './styles/Search'
 
 const useStyles = makeStyles(styles)
 
+let lists 
+
+const Filter = (props) => {
+  const classes = useStyles()
+
+  const [lowBound, setLow] = useState()
+  const [highBound, setHigh] = useState()
+
+  lists = props.data
+  const applyFilter = () => {
+    lists = props.data
+  }
+  
+  const changeLow = (event, newLow) => {
+    console.log(newLow)
+    setLow(newLow)
+    applyFilter()
+  }
+
+  return (
+    <div className={classes.filter}>
+    </div>
+  )
+}
+
 const Search = () => {
   const classes = useStyles()
 
   const context = useContext(FirebaseAuthContext)
-  let {path, url} = useRouteMatch()
 
-
-  const [value, setValue] = useState()
   
+  const [dataCache, setData] = useState(null)
+  const [value, setValue] = useState()
+
   useEffect(() => {
     setValue(0)
   }, [])
@@ -49,6 +74,7 @@ const Search = () => {
     console.log(newValue)
     setValue(newValue)
   }
+
 
   return (
     <div className={classes.root}>
@@ -59,6 +85,7 @@ const Search = () => {
           path={'listings'}
           >
             { ({error, isLoading, data}) => {
+              setData(data)
               if (error) {
                 return error.message
               }
@@ -68,6 +95,7 @@ const Search = () => {
               if (data.length === 0) {
                 return <Typography variant='h4' color='error'>No Listings Yet!</Typography>
               }
+              
               return (
                 <div>
                   <Tabs
@@ -78,7 +106,8 @@ const Search = () => {
                     <Tab disableRipple icon={<MapIcon/>} value={0}/>
                     <Tab disableRipple icon={<ListIcon/>} value={1}/>
                   </Tabs>
-                  <SearchMethod data={data} value={value}/>
+                  <Filter data={dataCache}/>
+                  <SearchMethod data={dataCache} value={value}/>
                 </div>
               )
             }}

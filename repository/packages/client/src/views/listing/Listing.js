@@ -53,19 +53,18 @@ export const Listing = () => {
                     <Link to='/search' style={{textDecoration: 'none'}}>
                       LISTINGS
                     </Link>
-                    <Typography color='primary'>{data.address}</Typography>
+                    <Typography color='primary'>{data.streetAddress}</Typography>
                   </Breadcrumbs>
                   <Grid container direction='column' justify='flex-start' className={classes.listing}>
-                    <Grid item xs={12} className={classes.address}>
-                      <Typography variant='h3' color='primary'>
-                        {data.address}
+                    <Grid item xs={7}>
+                      <Typography variant='h3' color='primary' className={classes.address}>
+                        {data.streetAddress}
                       </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <img src={data.img}></img>
+                      <br/>
+                      <img src={data.img} width='400em'></img>
                     </Grid>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={5}>
                     <Button variant={context.isUserSignedIn ? 'contained' : 'disabled'} color='primary' href={`/apply/${listID}`}>Apply</Button>
                   </Grid>
                 </Grid>

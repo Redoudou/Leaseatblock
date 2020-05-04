@@ -15,6 +15,9 @@ const styles = {
     margin: '3em',
     maxWidth: '40em'
   },
+  filter: {
+    height: '10em'
+  }
 }
 
 export default styles 

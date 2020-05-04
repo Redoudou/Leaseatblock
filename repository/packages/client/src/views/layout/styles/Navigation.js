@@ -40,10 +40,11 @@ const styles = {
   },
   button: {
     height: '3em',
+    marginLeft: '2em'
   },
   button1: {
     paddingLeft: '2em',
-    padding: '0em'
+    paddingBottom: '1em'
   },
   button2: {
     paddingLeft: '2em',
@@ -52,14 +53,9 @@ const styles = {
   buttonD: {
     opacity: '0'
   },
-  welcome: {
-    paddingTop: '1.3em',
-    marginBottom: '0em',
-    textAlign: 'right',
-    textDecoration: 'none',
-    paddingLeft: '1em'
+  vert: {
+    minWidth: '4em'
   }
-
 }
 
 
