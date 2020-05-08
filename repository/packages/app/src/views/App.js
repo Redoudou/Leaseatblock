@@ -9,7 +9,7 @@ import ErrorBoundary from '../context/ErrorBoundary'
 import Firebase from '../firebase'
 
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <FirestoreProvider firebase={Firebase}>
@@ -18,7 +18,7 @@ function App() {
         </FirebaseAuthProvider>
       </FirestoreProvider>
     </div>
-  );
+  )
 }
 
 export default App

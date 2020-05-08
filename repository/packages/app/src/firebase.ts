@@ -1,8 +1,10 @@
-
 import * as Firebase from "firebase/app"
 import 'firebase/auth'
 import 'firebase/firestore'
 import fetch from 'cross-fetch'
+import { array } from "fp-ts";
+
+
 
 var firebaseConfig = {
   apiKey: process.env.REACT_APP_FB_apiKey,
@@ -15,11 +17,11 @@ Firebase.initializeApp(firebaseConfig)
 
 const db = Firebase.firestore()
 
-export const addUser = (user, data) => {
+export const addUser = (user: any, data: any) => {
   db.collection('users').doc(user).set(data)
 }
 
-export const isUser = (userID) => {
+export const isUser = (userID: any) => {
   if (userID) {
     let ref = db.collection('users')
 
@@ -36,11 +38,11 @@ export const isUser = (userID) => {
   return false
 }
 
-export const applyLease = (userID, prop) => {
+export const applyLease = (userID: any, prop: any) => {
   db.collection('leases').doc(userID).set(prop)
 }
 
-export const addListing = (data) => {
+export const addListing = (data: any) => {
   db.collection('listings').doc().set(data)
 }
 
